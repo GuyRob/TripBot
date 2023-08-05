@@ -1,20 +1,22 @@
-import HomePage.HomePage;
-import org.openqa.selenium.WebDriver;
+import com.guyrob.tripbot.HomePage;
+import com.guyrob.tripbot.SearchHotelPage;
+import com.guyrob.tripbot.base;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class A_sanityHotelSearch {
-    WebDriver driver;
+import java.util.concurrent.TimeUnit;
+
+public class P1_sanityHotelSearch extends base {
     HomePage homepage;
     @BeforeClass
     public void beforeClass(){
         driver = new ChromeDriver();
-        homepage = new HomePage(driver);
+        homepage = new HomePage();
+        driver.manage().window().maximize();
         driver.get("https://www.tripadvisor.com/");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @AfterClass
@@ -25,6 +27,8 @@ public class A_sanityHotelSearch {
     @Test
     public void searchHotel(){
         homepage.SearchHotel("Leonardo Privilege Hotel Eilat");
+        SearchHotelPage searchHotelPage = new SearchHotelPage(driver);
+        searchHotelPage.selectHotel_ByName("Leonardo Privilege Hotel Eilat");
     }
 
     }
