@@ -2,17 +2,16 @@ import com.guyrob.tripbot.HomePage.HomePage;
 import com.guyrob.tripbot.HotelPages.HotelProductPage;
 import com.guyrob.tripbot.HotelPages.SearchHotelPage;
 import com.guyrob.tripbot.base;
-import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
+
+import static com.guyrob.tripbot.HotelPages.HotelProductPage.checkDates;
 
 public class P1_sanityHotelSearch extends base {
     HomePage homepage;
@@ -23,6 +22,8 @@ public class P1_sanityHotelSearch extends base {
     String hotelName = "Leonardo Privilege Hotel Eilat";
     String startDate = "2023-09-01";
     String endDate = "2023-09-04";
+    int[] childages = {2, 3, 4, 5};
+    int rooms = 2, adults =3, children=4;
 
     @BeforeClass
     public void beforeClass(){
@@ -44,26 +45,32 @@ public class P1_sanityHotelSearch extends base {
     @Test
     public void P1_searchHotel(){
         homepage.SearchHotel(hotelName);
-        Assert.assertTrue(hotelName.contains(searchHotelPage.getSearchText()));
+        Assert.assertTrue(hotelName.contains(searchHotelPage.getSearchText()), "Wrong search hotel!");
     }
 
     @Test
     public void P2_selectHotel(){
         searchHotelPage.selectHotel_ByName(hotelName);
         List<String> tabs = switchTab(1);
-        Assert.assertTrue(hotelName.contains(hotelProductPage.getSearchText()));
+        Assert.assertTrue(hotelName.contains(hotelProductPage.getHotelName()), "Wrong hotel selected!");
     }
 
     @Test
     public void P3_selectDates(){
-        hotelProductPage.setCheckIn(startDate, endDate);
+        hotelProductPage.setDates(startDate, endDate);
+        Assert.assertTrue(checkDates(startDate, endDate));
     }
 
     @Test
     public void P4_selectGuests(){
-        int[] childages = {2, 3, 4, 5};
-        hotelProductPage.setGuests_childrens(2, 3, 4, childages);
-        hotelProductPage.updateGuests();
+        hotelProductPage.setGuests_children(rooms, adults, children, childages);
+        if (hotelProductPage.checkGuests_children(rooms, adults, children, childages)){
+            hotelProductPage.updateGuests();
+        } else {
+            Assert.fail("Wrong guests selected!");
+        }
     }
+
+
 
     }

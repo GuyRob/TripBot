@@ -16,8 +16,11 @@ public class locate {
 
     /** HotelsProductPage */
     public static By HOTP_txt_searchResult = By.id("HEADING");
-    public static By HOTP_btn_checkIn = By.xpath("//div[@data-automation='checkin']");
+
     // Dates (CheckIn)
+    public static By HOTP_btn_checkIn = By.xpath("//div[@data-automation='checkin']");
+    public static By HOTP_btn_checkOut = By.xpath("//div[@data-automation='checkout']");
+
     public static By HOTP_btn_datePicker = By.xpath("//div[@data-testid='day_picker']");
     public static By HOTP_btn_dateDays = By.xpath("//div[@role='row']//div[@role='gridcell']");
     public static By HOTP_txt_dateCurrentMonths_Year = By.xpath("//div[@role='heading']//div");
@@ -41,6 +44,8 @@ public class locate {
     public static By HOTP_txt_childrens = By.xpath("//span[@data-automation='childrenNum']");
     public static By HOTP_btn_childrens_prev = By.xpath("//button[@data-automation='childrenLess']");
     public static By HOTP_btn_childrens_next = By.xpath("//button[@data-automation='childrenMore']");
+    public static By HOTP_txt_agesList = By.xpath("//div[@class='QTOPt Z R2']//button/span");
+
 
     public static By childrenAges_Xpath(int index){
         return By.xpath("//button[@data-automation='child" + index + "']");
