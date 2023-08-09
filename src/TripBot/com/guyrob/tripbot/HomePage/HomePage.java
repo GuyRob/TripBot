@@ -1,20 +1,17 @@
-package com.guyrob.tripbot;
+package com.guyrob.tripbot.HomePage;
+import com.guyrob.tripbot.base;
 import com.guyrob.tripbot.locate;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class HomePage extends base{
-
-//    Locate locate = new locate();
-
+public class HomePage extends base {
 
     public void SearchHotel(String hotel) {
-            driver.findElement(locate.btn_SearchHotel).click();
+            driver.findElement(locate.HP_btn_SearchHotel).click();
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
-            driver.findElement(locate.txt_SearchHotel).sendKeys(hotel + Keys.ENTER);
+            driver.findElement(locate.HP_inp_SearchHotel).sendKeys(hotel + Keys.ENTER);
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
     }
