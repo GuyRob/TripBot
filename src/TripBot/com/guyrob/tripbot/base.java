@@ -1,11 +1,16 @@
 package com.guyrob.tripbot;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v114.emulation.Emulation;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.time.Month;
 import java.util.*;
 
@@ -40,6 +45,12 @@ public class base {
         int monthInt = month.getValue();
 
         return monthInt;
+    }
+
+    public static WebElement waitVisibility(int time, By locator){
+        // After clicking the button, wait for the dropdown content to become visible (if necessary)
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     public void changeLocation(float latitude, float longitude, int accuracy){

@@ -2,6 +2,8 @@ package com.guyrob.tripbot.HotelPages;
 
 import com.guyrob.tripbot.base;
 import com.guyrob.tripbot.locate;
+import org.jetbrains.annotations.NotNull;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
@@ -12,6 +14,12 @@ import java.util.List;
 
 public class HotelProductPage extends base {
 
+    /** General:*/
+    public String getHotelName(){
+        return driver.findElement(locate.HOTP_txt_searchResult).getText();
+    }
+
+    /** Dates:*/
     private void selectDate(String dateString) {
         try {
             final int FIX_YEAR = 1900;
@@ -67,7 +75,7 @@ public class HotelProductPage extends base {
     }
 
     /** @param startDate - format : yyyy-MM-dd */
-    public void setCheckIn(String startDate, String endDate)   {
+    public void setDates(String startDate, String endDate)   {
         try {
             actions = new Actions(driver);
             actions.moveToElement(driver.findElement(locate.HOTP_btn_checkIn)).perform();
@@ -84,7 +92,29 @@ public class HotelProductPage extends base {
         }
     }
 
+
+    public static boolean checkDates(String startDate, String endDate){
+        try {
+            String actualStartDate = driver.findElement(locate.HOTP_btn_checkIn).getText();
+            String actualEndDate = driver.findElement(locate.HOTP_btn_checkOut).getText();
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat dateFormatActual = new SimpleDateFormat("MM/dd/yy");
+            Date selectedStartDate = dateFormat.parse(startDate);
+            Date selectedEndDate = dateFormat.parse(endDate);
+            String formattedStartDate = dateFormatActual.format(selectedStartDate);
+            String formattedEndDate = dateFormatActual.format(selectedEndDate);
+
+            return actualStartDate.contains(""+formattedStartDate) && actualEndDate.contains(""+formattedEndDate);
+        } catch (Exception e){
+            Assert.fail("ERROR: Exception - " + e);
+            return false;
+        }
+    }
+
+    /** Guests:*/
     public void setGuests(int rooms, int adults) {
+        // Rooms
         if (!driver.findElement(locate.HOTP_txt_rooms).isDisplayed()) {
             driver.findElement(locate.HOTP_btn_guestsMenu).click();
         }
@@ -100,6 +130,7 @@ public class HotelProductPage extends base {
             }
         }
 
+        // Adults
         if (Integer.parseInt(driver.findElement(locate.HOTP_txt_adults).getText()) != adults) {
             while (Integer.parseInt(driver.findElement(locate.HOTP_txt_adults).getText()) < adults) {
                 driver.findElement(locate.HOTP_btn_adults_next).click();
@@ -112,9 +143,10 @@ public class HotelProductPage extends base {
         }
     }
 
-    // TODO - Fix children ages
-    public void setGuests_childrens(int rooms, int adults, int children, int[] childrenAges) {
+    public void setGuests_children(int rooms, int adults, int children, int @NotNull []  childrenAges) {
         setGuests(rooms, adults);
+
+        // Children
         if (Integer.parseInt(driver.findElement(locate.HOTP_txt_childrens).getText()) != children) {
             while (Integer.parseInt(driver.findElement(locate.HOTP_txt_childrens).getText()) < children) {
                 driver.findElement(locate.HOTP_btn_childrens_next).click();
@@ -126,18 +158,20 @@ public class HotelProductPage extends base {
             }
         }
 
-
-        System.out.println("children length: " + childrenAges.length);
+        // Ages
         for (int i = 0; i < childrenAges.length; i++){
-            System.out.println("current children age: " + childrenAges[i]);
             driver.findElement(locate.childrenAges_Xpath(i)).click();
-            sleep(1000);
-            driver.findElement(locate.childrenAges_Xpath(i)).click();
-
+            // Locate and click the desired option within the dropdown menu
+            List<WebElement> ageOption =  driver.findElements(locate.HOTP_txt_agesList);
+            for (WebElement ele : ageOption){
+                if (ele.getText().equals(String.valueOf(childrenAges[i]))){
+                    ele.click();
+                    break;
+                }
+            }
         }
 
     }
-
 
         public void updateGuests(){
         if (!driver.findElement(locate.HOTP_txt_rooms).isDisplayed()) {
@@ -146,8 +180,21 @@ public class HotelProductPage extends base {
         driver.findElement(locate.HOTP_inp_guestsUpdate).click();
     }
 
-        public String getSearchText(){
-        return driver.findElement(locate.HOTP_txt_searchResult).getText();
+    public boolean checkGuests(int rooms, int adult){
+        return String.valueOf(rooms).equals(driver.findElement(locate.HOTP_txt_rooms).getText()) && String.valueOf(adult).equals(driver.findElement(locate.HOTP_txt_adults).getText());
+    }
+
+    public boolean checkGuests_children(int rooms, int adults, int children, int @NotNull [] childages) {
+        boolean childagesAssert = true;
+        for (int i = 0; i < childages.length; i++){
+            WebElement currentChild = driver.findElement(locate.childrenAges_Xpath(i));
+            String currentChildText = currentChild.findElement(By.className("urOgU")).getText();
+            if (!currentChildText.equals(String.valueOf(childages[i]))){
+                childagesAssert = false;
+                break;
+            }
+        }
+        return checkGuests(rooms, adults) && String.valueOf(children).equals(driver.findElement(locate.HOTP_txt_childrens).getText()) && childagesAssert;
     }
 
 
