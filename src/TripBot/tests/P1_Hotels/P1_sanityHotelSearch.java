@@ -47,6 +47,7 @@ public class P1_sanityHotelSearch extends base {
     @Test
     public void P1_searchHotel(){
         homepage.SearchHotel(hotelName);
+        screenShot("Hotels", "P1_searchHotel", "search");
         Assert.assertTrue(hotelName.contains(searchHotelPage.getSearchText()), "Wrong search hotel!");
     }
 
@@ -54,12 +55,14 @@ public class P1_sanityHotelSearch extends base {
     public void P2_selectHotel(){
         searchHotelPage.selectHotel_ByName(hotelName);
         tabs = switchTab(1);
+        screenShot("Hotels", "P2_selectHotel", "select");
         Assert.assertTrue(hotelName.contains(hotelProductPage.getHotelName()), "Wrong hotel selected!");
     }
 
     @Test
     public void P3_selectDates(){
         hotelProductPage.setDates(startDate, endDate);
+        screenShot("Hotels", "P3_selectDates", "dates");
         Assert.assertTrue(checkDates(startDate, endDate));
     }
 
@@ -67,6 +70,7 @@ public class P1_sanityHotelSearch extends base {
     public void P4_selectGuests(){
         hotelProductPage.setGuests_children(rooms, adults, children, childAges);
         if (hotelProductPage.checkGuests_children(rooms, adults, children, childAges)){
+            screenShot("Hotels", "P4_selectGuests", "guests");
             hotelProductPage.updateGuests();
         } else {
             Assert.fail("Wrong guests selected!");
@@ -78,6 +82,7 @@ public class P1_sanityHotelSearch extends base {
     public void P5_selectDeal(){
         String vendor = hotelProductPage.selectDeal(1);
         tabs = switchTab(2);
+        screenShot("Hotels", "P5_selectDeal", "deal");
         Assert.assertTrue(hotelProductPage.checkDealURL(vendor), "Wrong hotel selected!");
     }
 
