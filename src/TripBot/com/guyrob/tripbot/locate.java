@@ -51,6 +51,10 @@ public class locate {
         return By.xpath("//button[@data-automation='child" + index + "']");
     }
 
+    // Deals
+    public static By HOTP_btn_Deals = By.xpath("//div[@id='DEALS']//a");
+
+
 
 
 }
