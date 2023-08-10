@@ -11,6 +11,7 @@ import org.testng.Assert;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class HotelProductPage extends base {
 
@@ -197,5 +198,20 @@ public class HotelProductPage extends base {
         return checkGuests(rooms, adults) && String.valueOf(children).equals(driver.findElement(locate.HOTP_txt_childrens).getText()) && childagesAssert;
     }
 
+
+    /** Deals:*/
+    public String selectDeal(int index) {
+        waitVisibility(10, locate.HOTP_btn_Deals);
+        List<WebElement> deals = driver.findElements(locate.HOTP_btn_Deals);
+        WebElement selectedDeal = deals.get(index-1);
+        String vendor = selectedDeal.getAttribute("data-vendorname");
+        selectedDeal.click();
+        driver.manage().timeouts().implicitlyWait(3 , TimeUnit.SECONDS);
+        return vendor;
+    }
+
+    public boolean checkDealURL(String provider){
+        return driver.getCurrentUrl().toLowerCase().contains(provider.toLowerCase());
+    }
 
 }
