@@ -1,15 +1,19 @@
 package com.guyrob.tripbot;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v114.emulation.Emulation;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
+import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
+import java.io.File;
 import java.time.Duration;
 import java.time.Month;
 import java.util.*;
@@ -58,6 +62,20 @@ public class base {
         devTools.createSession();
         devTools.send(Emulation.setGeolocationOverride(Optional.of(latitude),Optional.of(-
                 longitude),Optional.of(accuracy)));
+    }
+
+    public void screenShot(String folder, String name, String info){
+        try {
+            File DestFile = new File("src\\ExtFiles\\screenShots\\"+folder+"\\"+name+".png");
+
+                TakesScreenshot scrShot = ((TakesScreenshot) driver);
+                File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+                FileUtils.copyFile(SrcFile, DestFile);
+                System.out.println("LOG: " + info);
+
+        } catch (Exception e){
+            System.out.println("ERROR: Screenshot failed - " + e);
+        }
     }
 
 
