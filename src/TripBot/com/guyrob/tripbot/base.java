@@ -6,17 +6,20 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v114.emulation.Emulation;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import ru.yandex.qatools.ashot.AShot;
-import ru.yandex.qatools.ashot.Screenshot;
-import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.Duration;
 import java.time.Month;
 import java.util.*;
+
+import io.qameta.allure.*;
+import ru.yandex.qatools.allure.report.AllureReportBuilder;
+import ru.yandex.qatools.allure.report.AllureReportBuilderException;
 
 
 public class base {
@@ -71,10 +74,58 @@ public class base {
                 TakesScreenshot scrShot = ((TakesScreenshot) driver);
                 File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
                 FileUtils.copyFile(SrcFile, DestFile);
-                System.out.println("LOG: " + info);
+//                System.out.println("LOG: " + info); TODO switch with log
 
         } catch (Exception e){
             System.out.println("ERROR: Screenshot failed - " + e);
+        }
+    }
+
+    /** Allure: */
+
+    // TODO - Fix - not working
+    public void generateReport(){
+        try {
+            String allureVersion = "2.23.0"; // Replace with your Allure version
+            File reportDirectory = new File("allure-report");
+            File resultsDirectory = new File("allure-results");
+
+            AllureReportBuilder allureReportBuilder = new AllureReportBuilder(allureVersion, reportDirectory);
+
+            // Unpack the report face
+            allureReportBuilder.unpackFace();
+
+            // Process the results
+            allureReportBuilder.processResults(resultsDirectory);
+
+            System.out.println("Allure report generated successfully.");
+        }
+     catch (Exception e){
+            System.out.println("Exception on generate report: " + e);
+        }
+
+    }
+
+    public void allure_Log(String message) {
+        Allure.step(message);
+    }
+
+
+
+        public void allure_LogWithAttachment(String folder, String name , String info) {
+            allure_Log(info);
+            attachScreenshot(folder, name);
+    }
+
+    private void attachScreenshot(String folder, String name) {
+        try {
+            String imagePath = "src\\ExtFiles\\screenShots\\" + folder + "\\" + name + ".png";
+
+            // Load the screenshot file and attach it directly
+            // You need to implement this part based on how you capture screenshots
+            Allure.addAttachment(name, "image/png", imagePath);
+        } catch (Exception e){
+            System.out.println("Exception: " + e);
         }
     }
 

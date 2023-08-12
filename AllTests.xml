@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="MyTestSuite">
+    <test name="AllTests">
+        <classes>
+            <class name="P1_sanityHotelSearch" />
+            <!-- Add more class elements for other test classes -->
+        </classes>
+    </test>
+</suite>
