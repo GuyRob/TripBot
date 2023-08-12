@@ -202,6 +202,10 @@ public class HotelProductPage extends base {
     /** Deals:*/
     public String selectDeal(int index) {
         waitVisibility(10, locate.HOTP_btn_Deals);
+
+        actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(locate.HOTP_btn_Deals)).perform();
+
         List<WebElement> deals = driver.findElements(locate.HOTP_btn_Deals);
         WebElement selectedDeal = deals.get(index-1);
         String vendor = selectedDeal.getAttribute("data-vendorname");

@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.report.AllureReportBuilder;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -47,6 +48,7 @@ public class P1_sanityHotelSearch extends base {
     @Test
     public void P1_searchHotel(){
         homepage.SearchHotel(hotelName);
+        allure_Log("search");
         screenShot("Hotels", "P1_searchHotel", "search");
         Assert.assertTrue(hotelName.contains(searchHotelPage.getSearchText()), "Wrong search hotel!");
     }
@@ -56,6 +58,7 @@ public class P1_sanityHotelSearch extends base {
         searchHotelPage.selectHotel_ByName(hotelName);
         tabs = switchTab(1);
         screenShot("Hotels", "P2_selectHotel", "select");
+        allure_LogWithAttachment("Hotels", "P2_selectHotel", "select");
         Assert.assertTrue(hotelName.contains(hotelProductPage.getHotelName()), "Wrong hotel selected!");
     }
 
