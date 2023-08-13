@@ -1,4 +1,4 @@
-package com.guyrob.tripbot.HotelPages;
+package com.guyrob.tripbot.ProductPages;
 
 import com.guyrob.tripbot.base;
 import com.guyrob.tripbot.locate;
@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 public class HotelProductPage extends base {
 
-    /** General:*/
+    /** Details:*/
     public String getHotelName(){
         return driver.findElement(locate.HOTP_txt_searchResult).getText();
     }
@@ -204,7 +204,7 @@ public class HotelProductPage extends base {
         waitVisibility(10, locate.HOTP_btn_Deals);
 
         actions = new Actions(driver);
-        actions.moveToElement(driver.findElement(locate.HOTP_btn_Deals)).perform();
+        actions.moveToElement(driver.findElement(locate.HOTP_btn_Deals)).perform(); // TODO fix moveToElement
 
         List<WebElement> deals = driver.findElements(locate.HOTP_btn_Deals);
         WebElement selectedDeal = deals.get(index-1);
@@ -214,8 +214,6 @@ public class HotelProductPage extends base {
         return vendor;
     }
 
-    public boolean checkDealURL(String provider){
-        return driver.getCurrentUrl().toLowerCase().contains(provider.toLowerCase());
-    }
+
 
 }

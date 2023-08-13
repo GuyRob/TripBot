@@ -1,4 +1,9 @@
-package com.guyrob.tripbot.HomePage;
+
+/*
+ * (c) guyrob.tripbot
+ */
+
+package com.guyrob.tripbot.General;
 import com.guyrob.tripbot.base;
 import com.guyrob.tripbot.locate;
 import org.openqa.selenium.Keys;

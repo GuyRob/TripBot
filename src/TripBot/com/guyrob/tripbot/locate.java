@@ -17,12 +17,11 @@ public class locate {
 
     /** Search Page (General)*/
     public static By SP_txt_searchResult = By.xpath("//span[@class='title-query']");
+    public static By SP_btn_productsList = By.xpath("//div[@class='result-title']/span");
+
 
     /** Product Page (General)*/
     // TODO Will be checked on thingProductPage
-
-    /** HotelsSearchPage */
-    public static By HOT_btn_HotelsTitile = By.xpath("//div[@class='result-title']/span");
 
     /** HotelsProductPage */
     public static By HOTP_txt_searchResult = By.id("HEADING");
@@ -66,7 +65,8 @@ public class locate {
 
 
     /** ThingsPages */
-    // TODO add
+    public static By TNGP_txt_searchResult = By.xpath("//h1[@data-automation='mainH1']");
+    public static By TNGP_btn_visitWebsite = By.xpath("//div[@data-automation='WebPresentation_PoiOverviewWeb']//span[contains(text(), 'Visit website')]");
 
 
 }
