@@ -1,8 +1,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="MyTestSuite">
-    <test name="AllTests">
+<suite name="All Tests Suite">
+    <test name="P1_Hotels">
         <classes>
             <class name="P1_sanityHotelSearch" />
+
+            <!-- Add more class elements for other test classes -->
+        </classes>
+    </test>
+
+    <test name="P2_ThingsToDo">
+        <classes>
+            <class name="P1_sanityThingSearch" />
+
             <!-- Add more class elements for other test classes -->
         </classes>
     </test>

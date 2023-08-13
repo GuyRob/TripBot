@@ -1,3 +1,6 @@
+/*
+ * (c) guyrob.tripbot
+ */
 package com.guyrob.tripbot;
 
 import org.openqa.selenium.By;
@@ -8,11 +11,18 @@ public class locate {
     public static By HP_btn_SearchHotel = By.xpath("//*[@href='/Hotels' or text()='Hotels']");
     public static By HP_inp_SearchHotel = By.xpath("((//input[@role='searchbox'])[2]) | //input[@placeholder='Where to?'] | //input[contains(text(), 'Hotel')] | //input[@placeholder='Hotel name or destination']");
 
-//    static By cpytxt_SearchHotel = By.xpath("((//input[@role='searchbox'])[2]) | //input[@placeholder='Where to?']");
+    public static By HP_btn_SearchThing = By.xpath("//*[@href='/Attractions' or text()='Things to Do']");
+    public static By HP_inp_SearchThing = By.xpath("((//input[@role='searchbox']) | //input[@placeholder='Where to?'])[3] | //input[@placeholder='Attraction, activity or destination']");
 
-    /** HotelsPage */
+
+    /** Search Page (General)*/
+    public static By SP_txt_searchResult = By.xpath("//span[@class='title-query']");
+
+    /** Product Page (General)*/
+    // TODO Will be checked on thingProductPage
+
+    /** HotelsSearchPage */
     public static By HOT_btn_HotelsTitile = By.xpath("//div[@class='result-title']/span");
-    public static By HOT_txt_searchResult = By.xpath("(//span[@class='title-query'])[1]");
 
     /** HotelsProductPage */
     public static By HOTP_txt_searchResult = By.id("HEADING");
@@ -55,6 +65,8 @@ public class locate {
     public static By HOTP_btn_Deals = By.xpath("//div[@id='DEALS']//a");
 
 
+    /** ThingsPages */
+    // TODO add
 
 
 }

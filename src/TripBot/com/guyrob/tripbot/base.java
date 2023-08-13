@@ -1,3 +1,6 @@
+/*
+ * (c) guyrob.tripbot
+ */
 package com.guyrob.tripbot;
 
 import org.apache.commons.io.FileUtils;

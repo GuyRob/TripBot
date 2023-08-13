@@ -16,4 +16,13 @@ public class HomePage extends base {
 
     }
 
+    public void searchThing(String thing) {
+        driver.findElement(locate.HP_btn_SearchThing).click();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+        driver.findElement(locate.HP_inp_SearchThing).sendKeys(thing + Keys.ENTER);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+    }
+
 }

@@ -19,7 +19,8 @@ public class SearchHotelPage extends base {
     }
 
     public String getSearchText(){
-        return driver.findElement(locate.HOT_txt_searchResult).getText();
+        return driver.findElement(locate.SP_txt_searchResult).getText();
+//        return driver.findElement(locate.HOT_txt_searchResult).getText();
     }
 
 }

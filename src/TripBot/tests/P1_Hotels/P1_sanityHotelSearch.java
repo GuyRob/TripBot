@@ -21,7 +21,7 @@ public class P1_sanityHotelSearch extends base {
     HotelProductPage hotelProductPage;
     List<String> tabs;
 
-    // Test Data
+    /** Test Data: */
     String hotelName = "Leonardo Privilege Hotel Eilat";
     String startDate = "2023-09-01";
     String endDate = "2023-09-04";
@@ -42,7 +42,7 @@ public class P1_sanityHotelSearch extends base {
 
     @AfterClass
     public void afterClass() {
-//        driver.quit();
+        driver.quit();
     }
 
     @Test
