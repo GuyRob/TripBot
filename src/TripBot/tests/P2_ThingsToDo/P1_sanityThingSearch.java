@@ -1,8 +1,6 @@
-import com.guyrob.tripbot.HomePage.HomePage;
-import com.guyrob.tripbot.HotelPages.HotelProductPage;
-import com.guyrob.tripbot.HotelPages.SearchHotelPage;
-import com.guyrob.tripbot.ThingsPages.SearchThingPage;
-import com.guyrob.tripbot.ThingsPages.ThingProductPage;
+import com.guyrob.tripbot.General.HomePage;
+import com.guyrob.tripbot.General.SearchPage;
+import com.guyrob.tripbot.ProductPages.ThingProductPage;
 import com.guyrob.tripbot.base;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -15,17 +13,21 @@ import java.util.concurrent.TimeUnit;
 
 public class P1_sanityThingSearch extends base {
     HomePage homepage;
-    SearchThingPage searchThingPage;
+    SearchPage searchPage;
     ThingProductPage thingProductPage;
 
+    List<String> tabs;
+
     /** Test Data: */
-    String thingName = "Dolphin Eilat";
+    String thingAndLocationName = "Dolphin Eilat";
+    String selectedThing = "Dolphin Reef";
 
     @BeforeClass
     public void beforeClass(){
         driver = new ChromeDriver();
         homepage = new HomePage();
-        searchThingPage = new SearchThingPage();
+        searchPage = new SearchPage();
+        thingProductPage = new ThingProductPage();
 
 
         driver.manage().window().maximize();
@@ -40,10 +42,27 @@ public class P1_sanityThingSearch extends base {
 
     @Test
     public void P1_searchThing(){
-        homepage.searchThing(thingName);
+        homepage.searchThing(thingAndLocationName);
         allure_Log("search");
         screenShot("Things", "P1_searchThing", "search");
-        Assert.assertTrue(thingName.contains(searchThingPage.getSearchText()), "Wrong search thing!");
+        Assert.assertTrue(thingAndLocationName.contains(searchPage.getSearchText()), "Wrong search thing!");
+    }
+
+    @Test
+    public void P2_selectThing(){
+        searchPage.selectProduct_ByIndex(1);
+        tabs = switchTab(1);
+        screenShot("Things", "P2_selectThing", "select");
+        allure_LogWithAttachment("Things", "P2_selectThing", "select");
+        Assert.assertTrue(selectedThing.contains(thingProductPage.getThingName()), "Wrong thing selected!");
+    }
+
+    @Test
+    public void P3_visitWebsite(){
+        String vendor = thingProductPage.visitWebsite();
+        tabs = switchTab(2);
+        screenShot("Things", "P3_visitWebsite", "website");
+        Assert.assertTrue(getCurrentURL(vendor), "Wrong thing selected!");
     }
 
 

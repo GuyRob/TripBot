@@ -1,23 +1,21 @@
-import com.guyrob.tripbot.HomePage.HomePage;
-import com.guyrob.tripbot.HotelPages.HotelProductPage;
-import com.guyrob.tripbot.HotelPages.SearchHotelPage;
+import com.guyrob.tripbot.General.HomePage;
+import com.guyrob.tripbot.ProductPages.HotelProductPage;
+import com.guyrob.tripbot.General.SearchPage;
 import com.guyrob.tripbot.base;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.report.AllureReportBuilder;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static com.guyrob.tripbot.HotelPages.HotelProductPage.checkDates;
+import static com.guyrob.tripbot.ProductPages.HotelProductPage.checkDates;
 
 public class P1_sanityHotelSearch extends base {
     HomePage homepage;
-    SearchHotelPage searchHotelPage;
+    SearchPage searchPage;
     HotelProductPage hotelProductPage;
     List<String> tabs;
 
@@ -32,7 +30,7 @@ public class P1_sanityHotelSearch extends base {
     public void beforeClass(){
         driver = new ChromeDriver();
         homepage = new HomePage();
-        searchHotelPage = new SearchHotelPage();
+        searchPage = new SearchPage();
         hotelProductPage = new HotelProductPage();
 
         driver.manage().window().maximize();
@@ -50,12 +48,12 @@ public class P1_sanityHotelSearch extends base {
         homepage.SearchHotel(hotelName);
         allure_Log("search");
         screenShot("Hotels", "P1_searchHotel", "search");
-        Assert.assertTrue(hotelName.contains(searchHotelPage.getSearchText()), "Wrong search hotel!");
+        Assert.assertTrue(hotelName.contains(searchPage.getSearchText()), "Wrong search hotel!");
     }
 
     @Test
     public void P2_selectHotel(){
-        searchHotelPage.selectHotel_ByName(hotelName);
+        searchPage.selectProduct_ByName(hotelName);
         tabs = switchTab(1);
         screenShot("Hotels", "P2_selectHotel", "select");
         allure_LogWithAttachment("Hotels", "P2_selectHotel", "select");
@@ -86,7 +84,7 @@ public class P1_sanityHotelSearch extends base {
         String vendor = hotelProductPage.selectDeal(1);
         tabs = switchTab(2);
         screenShot("Hotels", "P5_selectDeal", "deal");
-        Assert.assertTrue(hotelProductPage.checkDealURL(vendor), "Wrong hotel selected!");
+        Assert.assertTrue(getCurrentURL(vendor), "Wrong hotel selected!");
     }
 
 

@@ -30,6 +30,15 @@ public class base {
     public static DevTools devTools;
     public static Actions actions;
 
+    public boolean getCurrentURL(String provider){
+        return driver.getCurrentUrl().toLowerCase().contains(provider.toLowerCase());
+    }
+
+    public WebElement getParent(WebElement son){
+        WebElement parentAnchor = (WebElement) ((JavascriptExecutor) driver).executeScript(
+                "return arguments[0].parentNode;", son);
+        return parentAnchor;
+    }
 
     public void sleep(int time) {
         try {
