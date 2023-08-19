@@ -15,4 +15,12 @@
             <!-- Add more class elements for other test classes -->
         </classes>
     </test>
+
+    <test name="P4_Restaurants">
+        <classes>
+            <class name="P1_sanityRestSearch" />
+
+            <!-- Add more class elements for other test classes -->
+        </classes>
+    </test>
 </suite>
