@@ -21,7 +21,7 @@ public class ThingProductPage extends base {
         waitVisibility(10, locate.TNGP_btn_visitWebsite);
 
         WebElement btn_visitWebsite = driver.findElement(locate.TNGP_btn_visitWebsite);
-        WebElement father_VisitWebsite_href = getParent(btn_visitWebsite);
+        WebElement father_VisitWebsite_href = getParentElement(btn_visitWebsite);
         String urlLink = father_VisitWebsite_href.getAttribute("href");
 
         btn_visitWebsite.click();
