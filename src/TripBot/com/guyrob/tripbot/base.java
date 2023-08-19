@@ -16,13 +16,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.Month;
 import java.util.*;
 
 import io.qameta.allure.*;
-import ru.yandex.qatools.allure.report.AllureReportBuilder;
-import ru.yandex.qatools.allure.report.AllureReportBuilderException;
 
 
 public class base {
@@ -79,14 +80,13 @@ public class base {
                 longitude),Optional.of(accuracy)));
     }
 
-    public void screenShot(String folder, String name, String info){
+    public void screenShot(String folder, String name){
         try {
             File DestFile = new File("src\\ExtFiles\\screenShots\\"+folder+"\\"+name+".png");
 
                 TakesScreenshot scrShot = ((TakesScreenshot) driver);
                 File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
                 FileUtils.copyFile(SrcFile, DestFile);
-//                System.out.println("LOG: " + info); TODO switch with log
 
         } catch (Exception e){
             System.out.println("ERROR: Screenshot failed - " + e);
@@ -96,52 +96,45 @@ public class base {
     /** Allure: */
 
     // TODO - Fix - not working
-    public void generateReport(){
-        try {
-            String allureVersion = "2.23.0"; // Replace with your Allure version
-            File reportDirectory = new File("allure-report");
-            File resultsDirectory = new File("allure-results");
-
-            AllureReportBuilder allureReportBuilder = new AllureReportBuilder(allureVersion, reportDirectory);
-
-            // Unpack the report face
-            allureReportBuilder.unpackFace();
-
-            // Process the results
-            allureReportBuilder.processResults(resultsDirectory);
-
-            System.out.println("Allure report generated successfully.");
-        }
-     catch (Exception e){
-            System.out.println("Exception on generate report: " + e);
-        }
-
-    }
+//    public void generateReport(){
+//        try {
+//            String allureVersion = "2.23.0"; // Replace with your Allure version
+//            File reportDirectory = new File("allure-report");
+//            File resultsDirectory = new File("allure-results");
+//
+//            AllureReportBuilder allureReportBuilder = new AllureReportBuilder(allureVersion, reportDirectory);
+//
+//            // Unpack the report face
+//            allureReportBuilder.unpackFace();
+//
+//            // Process the results
+//            allureReportBuilder.processResults(resultsDirectory);
+//
+//            System.out.println("Allure report generated successfully.");
+//        }
+//     catch (Exception e){
+//            System.out.println("Exception on generate report: " + e);
+//        }
+//
+//    }
 
     public void allure_Log(String message) {
         Allure.step(message);
     }
 
+    public static void allure_LogAttachment(String info, String folder, String name) {
+        String imagePath = "src\\ExtFiles\\screenShots\\" + folder + "\\" + name + ".png";
+        Path imageFilePath = Paths.get(imagePath);
 
-
-        public void allure_LogWithAttachment(String folder, String name , String info) {
-            allure_Log(info);
-            attachScreenshot(folder, name);
-    }
-
-    private void attachScreenshot(String folder, String name) {
-        try {
-            String imagePath = "src\\ExtFiles\\screenShots\\" + folder + "\\" + name + ".png";
-
-            // Load the screenshot file and attach it directly
-            // You need to implement this part based on how you capture screenshots
-            Allure.addAttachment(name, "image/png", imagePath);
-        } catch (Exception e){
-            System.out.println("Exception: " + e);
+        if (Files.exists(imageFilePath) && Files.isReadable(imageFilePath)) {
+            try (InputStream imageStream = new FileInputStream(imageFilePath.toFile())) {
+                Allure.addAttachment(info, imageStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Image file not found or not readable.");
         }
     }
-
-
-
 
 }
