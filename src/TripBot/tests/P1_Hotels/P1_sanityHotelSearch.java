@@ -92,5 +92,4 @@ public class P1_sanityHotelSearch extends base {
         Assert.assertTrue(getCurrentURL(vendor), "Wrong hotel selected!");
     }
 
-
     }
