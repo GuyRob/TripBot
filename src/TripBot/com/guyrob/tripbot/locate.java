@@ -34,7 +34,7 @@ public class locate {
     public static By HOTP_btn_checkOut = By.xpath("//div[@data-automation='checkout']");
 
     public static By HOTP_btn_datePicker = By.xpath("//div[@data-testid='day_picker']");
-    public static By HOTP_btn_dateDays = By.xpath("//div[@role='row']//div[@role='gridcell']");
+    public static By HOTP_btn_dateDays = By.xpath("//div[@role='row']//div[@role='gridcell']/div/div[1]"); // OLD //div[@role='row']//div[@role='gridcell']
     public static By HOTP_txt_dateCurrentMonths_Year = By.xpath("//div[@role='heading']//div");
 
     public static By HOTP_btn_datePrev = By.xpath("//button[@data-testid='nav_prev']");
