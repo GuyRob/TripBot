@@ -39,4 +39,11 @@ public class HomePage extends base {
 
     }
 
+    public void SearchRental(String rentName) {
+        driver.findElement(locate.HP_btn_SearchRental).click();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+        driver.findElement(locate.HP_inp_SearchRental).sendKeys(rentName + Keys.ENTER);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+    }
 }

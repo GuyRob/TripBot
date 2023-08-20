@@ -14,6 +14,10 @@ public class locate {
     public static By HP_btn_SearchThing = By.xpath("//*[@href='/Attractions' or text()='Things to Do']");
     public static By HP_inp_SearchThing = By.xpath("((//input[@role='searchbox']) | //input[@placeholder='Where to?'])[3] | //input[@placeholder='Attraction, activity or destination']");
 
+    public static By HP_btn_SearchRental = By.xpath("//*[@href='/Rentals' or text()='Vacation Rentals']");
+    public static By HP_inp_SearchRental = By.xpath("((//input[@role='searchbox']) | //input[@placeholder='Where to?'])[3] | //input[@placeholder='Destination']");
+
+
     public static By HP_btn_SearchRestaurant = By.xpath("//*[@href='/Restaurants' or text()='Restaurants']");
     public static By HP_inp_SearchRestaurant = By.xpath("((//input[@role='searchbox']) | //input[@placeholder='Where to?'])[3] | //input[@placeholder='Restaurant or destination']");
 
@@ -70,6 +74,26 @@ public class locate {
     /** ThingsPages */
     public static By TNGP_txt_searchResult = By.xpath("//h1[@data-automation='mainH1']");
     public static By TNGP_btn_visitWebsite = By.xpath("//div[@data-automation='WebPresentation_PoiOverviewWeb']//span[contains(text(), 'Visit website')]");
+
+    /** RentalProductPage*/
+    public static By RENP_txt_searchResult = By.xpath("//h1[@data-test-target='rental-detail-header']");
+    public static By RENP_btn_dates = By.xpath("//div[@data-automation='checkInCheckOutPicker']");
+
+    // Date
+    public static By RENP_txt_dateCurrentMonths_Year = By.xpath("//div[@data-automation='dayCalendar']//h2");
+    public static By RENP_btn_dateDays = By.xpath("//div[@role='row']//div[@role='gridcell']//text()");
+
+
+    // Guests
+    public static By RENP_btn_guestsMenu = By.xpath("//div[@data-automation='guestPickerField']");
+    public static By RENP_inp_guestsUpdate = By.xpath("(//div[@data-automation='guestMix']//span)[2]");
+
+    public static By RENP_txt_guests = By.xpath("(//div[@data-automation='guestMix']//span)[1]");
+    public static By RENP_btn_guests_prev = By.xpath("//div[@data-automation='guestMix']//button[@title='decrease']");
+    public static By RENP_btn_guests_next = By.xpath("//div[@data-automation='guestMix']//button[@title='increase']");
+
+
+
 
     /** RestaurantPage */
     public static By RSTP_txt_searchResult = By.xpath("//h1[@data-test-target='top-info-header']");
