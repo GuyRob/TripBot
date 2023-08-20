@@ -10,19 +10,17 @@ import org.openqa.selenium.WebElement;
 
 import java.util.concurrent.TimeUnit;
 
-public class ThingProductPage extends base {
-
-    /** Details:*/
-    public String getThingName(){
-        return driver.findElement(locate.TNGP_txt_searchResult).getText();
+public class RestaurantProductPage extends base {
+    public String getRestName() {
+        return driver.findElement(locate.RSTP_txt_searchResult).getText();
     }
 
     public String visitWebsite(){
-        waitVisibility(10, locate.TNGP_btn_visitWebsite);
+        waitVisibility(10, locate.RSTP_btn_visitWebsite);
 
-        WebElement btn_visitWebsite = driver.findElement(locate.TNGP_btn_visitWebsite);
-        WebElement father_VisitWebsite_href = getParentElement(btn_visitWebsite);
-        String urlLink = father_VisitWebsite_href.getAttribute("href");
+        WebElement btn_visitWebsite = driver.findElement(locate.RSTP_btn_visitWebsite);
+//        WebElement father_VisitWebsite_href = getParent(btn_visitWebsite);
+        String urlLink = btn_visitWebsite.getAttribute("href");
 
         btn_visitWebsite.click();
         driver.manage().timeouts().implicitlyWait(3 , TimeUnit.SECONDS);
