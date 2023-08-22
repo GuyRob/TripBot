@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import tests.testdata;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,8 +26,6 @@ public class P1_sanityHotelSearch extends base {
 
     /** Test Data: */
     String hotelName = "Leonardo Privilege Hotel Eilat";
-    String startDate = "2023-11-01";
-    String endDate = "2023-11-04";
     int[] childAges = {2, 3, 4, 5};
     int rooms = 2, adults =3, children =4;
 
@@ -38,7 +37,8 @@ public class P1_sanityHotelSearch extends base {
         hotelProductPage = new HotelProductPage();
 
         driver.manage().window().maximize();
-        driver.get("https://www.tripadvisor.com/");
+        driver.get(testdata.url);
+
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
@@ -58,24 +58,24 @@ public class P1_sanityHotelSearch extends base {
     public void P2_selectHotel(){
         searchPage.selectProduct_ByName(hotelName);
         tabs = switchTab(1);
-        screenShot("Hotels", "P2_selectHotel");
-        allure_LogAttachment("Selecting: " + hotelName, "Hotels", "P2_selectHotel");
+        screenShot("Hotels\\\\P1", "P2_selectHotel");
+        allure_LogAttachment("Selecting: " + hotelName, "Hotels\\\\P1", "P2_selectHotel");
         Assert.assertTrue(hotelName.contains(hotelProductPage.getHotelName()), "Wrong hotel selected!");
     }
 
     @Test
     public void P3_selectDates(){
-        hotelProductPage.setDates(startDate, endDate);
-        allure_Log("Start date: " + startDate + " End date: " + endDate);
-        Assert.assertTrue(checkDates(startDate, endDate));
+        hotelProductPage.setDates(testdata.hotels_StartDate, testdata.hotels_EndDate);
+        allure_Log("Start date: " + testdata.hotels_StartDate + " End date: " + testdata.hotels_EndDate);
+        Assert.assertTrue(checkDates(testdata.hotels_StartDate, testdata.hotels_EndDate));
     }
 
     @Test
     public void P4_selectGuests(){
         hotelProductPage.setGuests_children(rooms, adults, children, childAges);
         if (hotelProductPage.checkGuests_children(rooms, adults, children, childAges)){
-            screenShot("Hotels", "P4_selectGuests");
-            allure_LogAttachment("Rooms: " + rooms + " Adults: " + adults + " Children: " + children + " Children ages: " + childAges.toString(), "Hotels", "P4_selectGuests");
+            screenShot("Hotels\\P1", "P4_selectGuests");
+            allure_LogAttachment("Rooms: " + rooms + " Adults: " + adults + " Children: " + children + " Children ages: " + childAges.toString(), "Hotels\\P1", "P4_selectGuests");
             hotelProductPage.updateGuests();
         } else {
             Assert.fail("Wrong guests selected!");
@@ -87,8 +87,8 @@ public class P1_sanityHotelSearch extends base {
     public void P5_selectDeal(){
         String vendor = hotelProductPage.selectDeal(1);
         tabs = switchTab(2);
-        screenShot("Hotels", "P5_selectDeal");
-        allure_LogAttachment("Deal", "Hotels", "P5_selectDeal");
+        screenShot("Hotels\\P1", "P5_selectDeal");
+        allure_LogAttachment("Deal", "Hotels\\P1", "P5_selectDeal");
         Assert.assertTrue(getCurrentURL(vendor), "Wrong hotel selected!");
     }
 

@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import tests.testdata;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -36,7 +37,7 @@ public class P1_sanityRentSearch extends base {
         rentalProductPage = new RentalProductPage();
 
         driver.manage().window().maximize();
-        driver.get("https://www.tripadvisor.com/");
+        driver.get(testdata.url);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
