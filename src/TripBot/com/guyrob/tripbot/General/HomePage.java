@@ -7,7 +7,9 @@ package com.guyrob.tripbot.General;
 import com.guyrob.tripbot.base;
 import com.guyrob.tripbot.locate;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class HomePage extends base {
@@ -19,6 +21,17 @@ public class HomePage extends base {
             driver.findElement(locate.HP_inp_SearchHotel).sendKeys(hotel + Keys.ENTER);
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
+    }
+
+    public void SearchHotel_Options(String destination, int index) {
+        driver.findElement(locate.HP_btn_SearchHotel).click();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+        driver.findElement(locate.HP_inp_SearchHotel).sendKeys(destination);
+        sleep(2000);
+        List<WebElement> options = driver.findElements(locate.HP_inp_HotelOptionList);
+
+        options.get(index-1).click();
     }
 
     public void searchThing(String thing) {

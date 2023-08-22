@@ -10,6 +10,9 @@ public class locate {
 
     public static By HP_btn_SearchHotel = By.xpath("//*[@href='/Hotels' or text()='Hotels']");
     public static By HP_inp_SearchHotel = By.xpath("((//input[@role='searchbox'])[2]) | //input[@placeholder='Where to?'] | //input[contains(text(), 'Hotel')] | //input[@placeholder='Hotel name or destination']");
+    public static By HP_inp_HotelOptionList = By.xpath("//div[@id='typeahead_results']//a");
+
+
 
     public static By HP_btn_SearchThing = By.xpath("//*[@href='/Attractions' or text()='Things to Do']");
     public static By HP_inp_SearchThing = By.xpath("((//input[@role='searchbox']) | //input[@placeholder='Where to?'])[3] | //input[@placeholder='Attraction, activity or destination']");
@@ -23,7 +26,7 @@ public class locate {
 
 
     /** Search Page (General)*/
-    public static By SP_txt_searchResult = By.xpath("//span[@class='title-query']");
+    public static By SP_txt_searchResult = By.xpath("//span[@class='title-query'] | //h1[@data-automation='header_geo_title']");
     public static By SP_btn_productsList = By.xpath("//div[@class='result-title']/span");
 
 
@@ -38,7 +41,7 @@ public class locate {
     public static By HOTP_btn_checkOut = By.xpath("//div[@data-automation='checkout']");
 
     public static By HOTP_btn_datePicker = By.xpath("//div[@data-testid='day_picker']");
-    public static By HOTP_btn_dateDays = By.xpath("//div[@role='row']//div[@role='gridcell']/div/div[1]"); // OLD //div[@role='row']//div[@role='gridcell']
+    public static By HOTP_btn_dateDays = By.xpath("//div[@role='row']//div[@role='gridcell']/div/div[1] | //div[@role='row']//div[@role='gridcell']"); // OLD //div[@role='row']//div[@role='gridcell']
     public static By HOTP_txt_dateCurrentMonths_Year = By.xpath("//div[@role='heading']//div");
 
     public static By HOTP_btn_datePrev = By.xpath("//button[@data-testid='nav_prev']");
