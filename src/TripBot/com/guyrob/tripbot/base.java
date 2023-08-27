@@ -36,6 +36,10 @@ public class base {
         return driver.getCurrentUrl().toLowerCase().contains(provider.toLowerCase());
     }
 
+    public boolean getCurrentURL_notContains(String originalSite) {
+        return !(driver.getCurrentUrl().toLowerCase().contains(originalSite.toLowerCase()));
+    }
+
     public WebElement getParentElement(WebElement son) {
         WebElement parentAnchor = (WebElement) ((JavascriptExecutor) driver).executeScript(
                 "return arguments[0].parentNode;", son);
