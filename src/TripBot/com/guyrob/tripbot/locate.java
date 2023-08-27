@@ -28,10 +28,12 @@ public class locate {
     /** Search Page (General)*/
     public static By SP_txt_searchResult = By.xpath("//span[@class='title-query'] | //h1[@data-automation='header_geo_title']");
     public static By SP_btn_productsList = By.xpath("//div[@class='result-title']/span | //button[@data-testid='view_deal_button']");
-    public static By SP_txt_productsList_prices = By.xpath("//div[@class='hjfcb']//span[@class='fwoto']//text()");
+    public static By SP_txt_productsList_prices = By.xpath("//div[@class='hjfcb']//span[@class='fwoto']/span");
 
     // Filters
     public static String SP_xpath_filters = "//div[@data-automation='LeftRail']";
+    public static By SP_txt_selectedFilters = By.xpath("//div[@data-test-target='filter-bar']//span/div"); // OLD: //div[@data-test-target='filter-bar']//text()
+
 
     // Sort
     public static By SP_btn_sort = By.xpath("//div[@data-automation='sort']");
