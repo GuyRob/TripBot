@@ -14,7 +14,6 @@ import tests.testdata;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static com.guyrob.tripbot.ProductPages.HotelProductPage.checkDates;
 
 // TODO not working - need to check
 public class P1_sanityRentSearch extends base {
@@ -66,7 +65,7 @@ public class P1_sanityRentSearch extends base {
     public void P3_selectDates(){
         rentalProductPage.setDates(startDate, endDate);
         allure_Log("Start date: " + startDate + " End date: " + endDate);
-        Assert.assertTrue(checkDates(startDate, endDate));
+        Assert.assertTrue(rentalProductPage.checkDates(startDate, endDate));
     }
 
     @Test

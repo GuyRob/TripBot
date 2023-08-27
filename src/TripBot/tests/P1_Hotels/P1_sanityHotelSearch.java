@@ -16,8 +16,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static com.guyrob.tripbot.ProductPages.HotelProductPage.checkDates;
-
 public class P1_sanityHotelSearch extends base {
     HomePage homepage;
     SearchPage searchPage;
@@ -65,9 +63,9 @@ public class P1_sanityHotelSearch extends base {
 
     @Test
     public void P3_selectDates(){
-        hotelProductPage.setDates(testdata.hotels_StartDate, testdata.hotels_EndDate);
+        hotelProductPage.setDates(testdata.hotels_StartDate, testdata.hotels_EndDate, true);
         allure_Log("Start date: " + testdata.hotels_StartDate + " End date: " + testdata.hotels_EndDate);
-        Assert.assertTrue(checkDates(testdata.hotels_StartDate, testdata.hotels_EndDate));
+        Assert.assertTrue(hotelProductPage.checkDates(testdata.hotels_StartDate, testdata.hotels_EndDate));
     }
 
     @Test

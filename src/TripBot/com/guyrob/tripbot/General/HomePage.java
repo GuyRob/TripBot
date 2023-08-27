@@ -23,7 +23,7 @@ public class HomePage extends base {
 
     }
 
-    public void SearchHotel_Options(String destination, int index) {
+    public void SearchHotel_SelectOption(String destination, int index) {
         driver.findElement(locate.HP_btn_SearchHotel).click();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 

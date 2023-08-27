@@ -76,12 +76,15 @@ public class HotelProductPage extends base {
     }
 
     /** @param startDate - format : yyyy-MM-dd */
-    public void setDates(String startDate, String endDate)   {
+    public void setDates(String startDate, String endDate, boolean select)   {
         try {
             actions = new Actions(driver);
             actions.moveToElement(driver.findElement(locate.HOTP_btn_checkIn)).perform();
-            if (!driver.findElement(locate.HOTP_btn_checkIn).isSelected()) {
-                driver.findElement(locate.HOTP_btn_checkIn).click();
+
+            if (select) {
+                if (!driver.findElement(locate.HOTP_btn_checkIn).isSelected()) { //!driver.findElement(locate.HOTP_btn_checkIn).isSelected()
+                    driver.findElement(locate.HOTP_btn_checkIn).click();
+                }
             }
 
             selectDate(startDate);
@@ -94,7 +97,7 @@ public class HotelProductPage extends base {
     }
 
 
-    public static boolean checkDates(String startDate, String endDate){
+    public boolean checkDates(String startDate, String endDate){
         try {
             String actualStartDate = driver.findElement(locate.HOTP_btn_checkIn).getText();
             String actualEndDate = driver.findElement(locate.HOTP_btn_checkOut).getText();
@@ -115,6 +118,7 @@ public class HotelProductPage extends base {
 
     /** Guests:*/
     public void setGuests(int rooms, int adults) {
+        waitVisibility(5, locate.HOTP_txt_rooms);
         // Rooms
         if (!driver.findElement(locate.HOTP_txt_rooms).isDisplayed()) {
             driver.findElement(locate.HOTP_btn_guestsMenu).click();

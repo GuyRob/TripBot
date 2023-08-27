@@ -27,7 +27,20 @@ public class locate {
 
     /** Search Page (General)*/
     public static By SP_txt_searchResult = By.xpath("//span[@class='title-query'] | //h1[@data-automation='header_geo_title']");
-    public static By SP_btn_productsList = By.xpath("//div[@class='result-title']/span");
+    public static By SP_btn_productsList = By.xpath("//div[@class='result-title']/span | //button[@data-testid='view_deal_button']");
+    public static By SP_txt_productsList_prices = By.xpath("//div[@class='hjfcb']//span[@class='fwoto']//text()");
+
+    // Filters
+    public static String SP_xpath_filters = "//div[@data-automation='LeftRail']";
+
+    // Sort
+    public static By SP_btn_sort = By.xpath("//div[@data-automation='sort']");
+    public static By SP_btn_sortOptions = By.xpath("//div[@data-automation='sort']//li[@role='none']//div/span");
+
+    // Hotels
+    public static By SP_HOT_childsAge = By.xpath("//span[@class='NK']");
+    public static By SP_HOT_btn_checkIn = By.xpath("//div[@data-automation='checkin']//span");
+    public static By SP_HOT_btn_checkOut = By.xpath("//div[@data-automation='checkout']//span");
 
 
     /** Product Page (General)*/
@@ -42,28 +55,28 @@ public class locate {
 
     public static By HOTP_btn_datePicker = By.xpath("//div[@data-testid='day_picker']");
     public static By HOTP_btn_dateDays = By.xpath("//div[@role='row']//div[@role='gridcell']/div/div[1] | //div[@role='row']//div[@role='gridcell']"); // OLD //div[@role='row']//div[@role='gridcell']
-    public static By HOTP_txt_dateCurrentMonths_Year = By.xpath("//div[@role='heading']//div");
+    public static By HOTP_txt_dateCurrentMonths_Year = By.xpath("//div[@role='heading']//div | //div[@data-automation='dayCalendar']//h2");
 
-    public static By HOTP_btn_datePrev = By.xpath("//button[@data-testid='nav_prev']");
-    public static By HOTP_btn_dateNext = By.xpath("//button[@data-testid='nav_next']");
+    public static By HOTP_btn_datePrev = By.xpath("//button[@data-testid='nav_prev'] | //button[@aria-label='Previous month']");
+    public static By HOTP_btn_dateNext = By.xpath("//button[@data-testid='nav_next'] | //button[@aria-label='Next month']");
 
     // Guests
     public static By HOTP_btn_guestsMenu = By.xpath("//div[@data-automation='guest']");
-    public static By HOTP_inp_guestsUpdate = By.xpath("//div[@data-automation='guestsUpdateBtn']");
+    public static By HOTP_inp_guestsUpdate = By.xpath("//div[@data-automation='guestsUpdateBtn'] | //button[@data-automation='guestsUpdateBtn']");
 
-    public static By HOTP_txt_rooms = By.xpath("//span[@data-automation='roomsNum']");
+    public static By HOTP_txt_rooms = By.xpath("//span[@data-automation='roomsNum'] | //div[@data-automation='roomsNum']");
     public static By HOTP_btn_rooms_prev = By.xpath("//button[@data-automation='roomsLess']");
     public static By HOTP_btn_rooms_next = By.xpath("//button[@data-automation='roomsMore']");
 
 
-    public static By HOTP_txt_adults = By.xpath("//span[@data-automation='adultsNum']");
+    public static By HOTP_txt_adults = By.xpath("//span[@data-automation='adultsNum'] | //div[@data-automation='adultsNum']");
     public static By HOTP_btn_adults_prev = By.xpath("//button[@data-automation='adultsLess']");
     public static By HOTP_btn_adults_next = By.xpath("//button[@data-automation='adultsMore']");
 
-    public static By HOTP_txt_childrens = By.xpath("//span[@data-automation='childrenNum']");
+    public static By HOTP_txt_childrens = By.xpath("//span[@data-automation='childrenNum'] | //div[@data-automation='childrenNum']");
     public static By HOTP_btn_childrens_prev = By.xpath("//button[@data-automation='childrenLess']");
     public static By HOTP_btn_childrens_next = By.xpath("//button[@data-automation='childrenMore']");
-    public static By HOTP_txt_agesList = By.xpath("//div[@class='QTOPt Z R2']//button/span");
+    public static By HOTP_txt_agesList = By.xpath("//div[@class='QTOPt Z R2']//button/span | //li[@role='none']");
 
 
     public static By childrenAges_Xpath(int index){
