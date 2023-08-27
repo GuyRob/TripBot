@@ -112,4 +112,8 @@ public class RentalProductPage extends base {
         driver.findElement(locate.RENP_inp_guestsUpdate).click();
     }
 
+    // TODO need to update
+    public boolean checkDates(String startDate, String endDate) {
+        return true;
+    }
 }

@@ -2,6 +2,7 @@ import com.guyrob.tripbot.General.HomePage;
 import com.guyrob.tripbot.General.SearchPage;
 import com.guyrob.tripbot.ProductPages.HotelProductPage;
 import com.guyrob.tripbot.base;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -12,9 +13,7 @@ import tests.testdata;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static com.guyrob.tripbot.ProductPages.HotelProductPage.checkDates;
-
-public class P2_sortingDestination extends base {
+public class P2_filterDestination extends base {
     HomePage homepage;
     SearchPage searchPage;
     HotelProductPage hotelProductPage;
@@ -22,7 +21,11 @@ public class P2_sortingDestination extends base {
 
     /** Test Data: */
     String destinationName = "Bucharest Romania, Europe";
-    int rooms = 1, adults =2;
+    int rooms = 2, adults =3;
+    String filter_Deals = "Deals";
+    String Deals_refund = "Fully refundable";
+    String filter_Amenities = "Amenities";
+    String Amenities_breakfast = "Breakfast included";
 
 
     @BeforeClass
@@ -39,12 +42,12 @@ public class P2_sortingDestination extends base {
 
     @AfterClass
     public void afterClass() {
-//        driver.quit();
+        driver.quit();
     }
 
     @Test
     public void P1_searchDestination(){
-        homepage.SearchHotel_Options(destinationName, 1);
+        homepage.SearchHotel_SelectOption(destinationName, 1);
         allure_Log("Search " + destinationName);
         screenShot("Hotels\\P2", "P1_searchDestination");
         allure_LogAttachment("Selecting: " + destinationName, "Hotels\\P2", "P1_searchDestination");
@@ -54,9 +57,9 @@ public class P2_sortingDestination extends base {
     @Test
     public void P2_selectDates(){
         sleep(1000);
-        hotelProductPage.setDates(testdata.hotels_StartDate, testdata.hotels_EndDate);
+        hotelProductPage.setDates(testdata.hotels_StartDate, testdata.hotels_EndDate, false);
         allure_Log("Start date: " + testdata.hotels_StartDate + " End date: " + testdata.hotels_EndDate);
-        Assert.assertTrue(checkDates(testdata.hotels_StartDate, testdata.hotels_EndDate));
+        Assert.assertTrue(searchPage.HOT_checkDates(testdata.hotels_StartDate, testdata.hotels_EndDate)); // TODO need to check why not working
     }
 
     @Test
@@ -69,6 +72,32 @@ public class P2_sortingDestination extends base {
         } else {
             Assert.fail("Wrong guests selected!");
         }
+    }
+
+    @Test
+    public void P4_filterDeals(){
+        WebElement deals = searchPage.filterEle_ByName(filter_Deals);
+        searchPage.filterOpt_ByText(deals, Deals_refund);
+        allure_Log("Filtering " + Deals_refund);
+        // TODO add assert
+    }
+
+    @Test
+    public void P5_filterAmenities(){
+        WebElement amenities = searchPage.filterEle_ByName(filter_Amenities);
+        searchPage.filterOpt_ByText(amenities, Amenities_breakfast);
+        screenShot("Hotels\\P2", "P5_filterAmenities");
+        allure_LogAttachment("Filtering " + Amenities_breakfast, "Hotels\\P2", "P5_filterAmenities");
+        // TODO add assert
+    }
+
+    @Test
+    public void P6_selectHotel(){
+        searchPage.selectProduct_ByIndex(1);
+        tabs = switchTab(1);
+        screenShot("Hotels\\P2", "P6_selectHotel");
+        allure_LogAttachment("Selecting hotel", "Hotels\\P2", "P6_selectHotel");
+        // TODO add assert
     }
 
 
