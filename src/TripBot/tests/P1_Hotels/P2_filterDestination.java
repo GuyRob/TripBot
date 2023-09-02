@@ -43,7 +43,7 @@ public class P2_filterDestination extends base {
 
     @AfterClass
     public void afterClass() {
-//        driver.quit();
+        driver.quit();
     }
 
     @Test

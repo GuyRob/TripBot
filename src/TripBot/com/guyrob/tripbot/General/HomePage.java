@@ -29,7 +29,7 @@ public class HomePage extends base {
 
         driver.findElement(locate.HP_inp_SearchHotel).sendKeys(destination);
         sleep(2000);
-        List<WebElement> options = driver.findElements(locate.HP_inp_HotelOptionList);
+        List<WebElement> options = driver.findElements(locate.HP_inp_SearchOptionList);
 
         options.get(index-1).click();
     }
@@ -41,6 +41,17 @@ public class HomePage extends base {
         driver.findElement(locate.HP_inp_SearchThing).sendKeys(thing + Keys.ENTER);
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
+    }
+
+    public void SearchThing_SelectOption(String destination, int index) {
+        driver.findElement(locate.HP_btn_SearchThing).click();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+        driver.findElement(locate.HP_inp_SearchThing).sendKeys(destination);
+        sleep(2000);
+        List<WebElement> options = driver.findElements(locate.HP_inp_SearchOptionList);
+
+        options.get(index-1).click();
     }
 
     public void searchRestaurant(String thing) {

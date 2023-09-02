@@ -56,8 +56,8 @@ public class P1_sanityHotelSearch extends base {
     public void P2_selectHotel(){
         searchPage.selectProduct_ByName(hotelName);
         tabs = switchTab(1);
-        screenShot("Hotels\\\\P1", "P2_selectHotel");
-        allure_LogAttachment("Selecting: " + hotelName, "Hotels\\\\P1", "P2_selectHotel");
+        screenShot("Hotels\\P1", "P2_selectHotel");
+        allure_LogAttachment("Selecting: " + hotelName, "Hotels\\P1", "P2_selectHotel");
         Assert.assertTrue(hotelName.contains(hotelProductPage.getHotelName()), "Wrong hotel selected!");
     }
 

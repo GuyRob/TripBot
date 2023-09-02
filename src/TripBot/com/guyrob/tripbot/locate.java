@@ -7,10 +7,11 @@ import org.openqa.selenium.By;
 
 public class locate {
     /** HomePage */
+    public static By HP_inp_SearchOptionList = By.xpath("//div[@id='typeahead_results']//a");
+
 
     public static By HP_btn_SearchHotel = By.xpath("//*[@href='/Hotels' or text()='Hotels']");
     public static By HP_inp_SearchHotel = By.xpath("((//input[@role='searchbox'])[2]) | //input[@placeholder='Where to?'] | //input[contains(text(), 'Hotel')] | //input[@placeholder='Hotel name or destination']");
-    public static By HP_inp_HotelOptionList = By.xpath("//div[@id='typeahead_results']//a");
 
 
 
@@ -26,7 +27,7 @@ public class locate {
 
 
     /** Search Page (General)*/
-    public static By SP_txt_searchResult = By.xpath("//span[@class='title-query'] | //h1[@data-automation='header_geo_title']");
+    public static By SP_txt_searchResult = By.xpath("//span[@class='title-query'] | //h1[@data-automation='header_geo_title'] | //div[@data-automation='main_h1']//h1");
     public static By SP_btn_productsList = By.xpath("//div[@class='result-title']/span | //button[@data-testid='view_deal_button']");
     public static By SP_txt_productsList_prices = By.xpath("//div[@class='hjfcb']//span[@class='fwoto']/span");
 
@@ -43,6 +44,9 @@ public class locate {
     public static By SP_HOT_childsAge = By.xpath("//span[@class='NK']");
     public static By SP_HOT_btn_checkIn = By.xpath("//div[@data-automation='checkin']//span");
     public static By SP_HOT_btn_checkOut = By.xpath("//div[@data-automation='checkout']//span");
+
+    // Things
+    public static By SP_TNG_btn_TopAttractions = By.xpath("//section[@data-automation='WebPresentation_WebCategoryListShelf']//div[@class='hZuqH']//span/div");
 
 
     /** Product Page (General)*/
