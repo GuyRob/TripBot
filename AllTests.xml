@@ -3,6 +3,8 @@
     <test name="P1_Hotels">
         <classes>
             <class name="P1_sanityHotelSearch" />
+            <class name="P2_filterDestination" />
+            <class name="P3_sortHotels" />
 
             <!-- Add more class elements for other test classes -->
         </classes>
@@ -11,6 +13,15 @@
     <test name="P2_ThingsToDo">
         <classes>
             <class name="P1_sanityThingSearch" />
+            <class name="P2_topAttraction" />
+
+            <!-- Add more class elements for other test classes -->
+        </classes>
+    </test>
+
+    <test name="P3_VacationRentals">
+        <classes>
+            <class name="P1_sanityRentSearch" />
 
             <!-- Add more class elements for other test classes -->
         </classes>

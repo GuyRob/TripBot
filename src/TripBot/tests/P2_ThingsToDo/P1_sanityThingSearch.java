@@ -52,8 +52,8 @@ public class P1_sanityThingSearch extends base {
     public void P2_selectThing(){
         searchPage.selectProduct_ByIndex(1);
         tabs = switchTab(1);
-        screenShot("Things", "P2_selectThing");
-        allure_LogAttachment("Selecting: " + thingAndLocationName, "Things", "P2_selectThing");
+        screenShot("Things\\P1", "P2_selectThing");
+        allure_LogAttachment("Selecting: " + thingAndLocationName, "Things\\P1", "P2_selectThing");
         Assert.assertTrue(selectedThing.contains(thingProductPage.getThingName()), "Wrong thing selected!");
     }
 
@@ -61,8 +61,8 @@ public class P1_sanityThingSearch extends base {
     public void P3_visitWebsite(){
         String vendor = thingProductPage.visitWebsite();
         tabs = switchTab(2);
-        screenShot("Things", "P3_visitWebsite");
-        allure_LogAttachment("Visit website", "Things", "P3_visitWebsite");
+        screenShot("Things\\P1", "P3_visitWebsite");
+        allure_LogAttachment("Visit website", "Things\\P1", "P3_visitWebsite");
         Assert.assertTrue(getCurrentURL(vendor), "Wrong thing selected!");
     }
 
