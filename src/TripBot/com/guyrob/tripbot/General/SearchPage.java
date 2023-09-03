@@ -42,7 +42,7 @@ public class SearchPage extends base {
         List<WebElement> products = driver.findElements(locate.SP_btn_productsList);
         List<WebElement> products_Prices = driver.findElements(locate.SP_txt_productsList_prices);
 
-        for (int i = 0; i < products.size(); i++) {
+        for (int i = 0; i < products.size()-1; i++) {
             String priceText = products_Prices.get(i).getText(); // Use getText() directly
             String numericOnlyText = priceText.replaceAll("[^0-9]", "");
             int priceInt = Integer.parseInt(numericOnlyText);

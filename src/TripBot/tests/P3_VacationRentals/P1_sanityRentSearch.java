@@ -1,8 +1,6 @@
 import com.guyrob.tripbot.General.HomePage;
 import com.guyrob.tripbot.General.SearchPage;
-import com.guyrob.tripbot.ProductPages.HotelProductPage;
 import com.guyrob.tripbot.ProductPages.RentalProductPage;
-import com.guyrob.tripbot.ProductPages.RestaurantProductPage;
 import com.guyrob.tripbot.base;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -25,8 +23,7 @@ public class P1_sanityRentSearch extends base {
 
     /** Test Data: */
     String vilaName = "Villa Riviera Eilat";
-    String startDate = "2023-11-01";
-    String endDate = "2023-11-04";
+
 
     @BeforeClass
     public void beforeClass(){
@@ -42,14 +39,14 @@ public class P1_sanityRentSearch extends base {
 
     @AfterClass
     public void afterClass() {
-        driver.quit();
+//        driver.quit();
     }
 
     @Test
     public void P1_searchRental(){
         homepage.SearchRental(vilaName);
         allure_Log("Search " + vilaName);
-        Assert.assertTrue(vilaName.contains(searchPage.getSearchText()), "Wrong search rental!");
+        Assert.assertTrue(searchPage.getSearchText().contains(vilaName), "Wrong search rental!");
     }
 
     @Test
@@ -58,14 +55,14 @@ public class P1_sanityRentSearch extends base {
         tabs = switchTab(1);
         screenShot("Rentals", "P2_selectHotel");
         allure_LogAttachment("Selecting: " + vilaName, "Rentals", "P2_selectRental");
-        Assert.assertTrue(vilaName.contains(rentalProductPage.getRentalName()), "Wrong rental selected!");
+        Assert.assertTrue(rentalProductPage.getRentalName().contains(vilaName), "Wrong rental selected!");
     }
 
     @Test
     public void P3_selectDates(){
-        rentalProductPage.setDates(startDate, endDate);
-        allure_Log("Start date: " + startDate + " End date: " + endDate);
-        Assert.assertTrue(rentalProductPage.checkDates(startDate, endDate));
+        rentalProductPage.setDates(testdata.sanity_StartDate, testdata.sanity_EndDate);
+        allure_Log("Start date: " + testdata.sanity_StartDate + " End date: " + testdata.sanity_EndDate);
+        Assert.assertTrue(rentalProductPage.checkDates(testdata.sanity_StartDate, testdata.sanity_EndDate));
     }
 
     @Test

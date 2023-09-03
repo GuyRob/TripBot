@@ -38,7 +38,7 @@ public class RentalProductPage extends base {
             int selectedYear = date.getYear() + FIX_YEAR;
 
             while (selectedYear > currentYear){
-                driver.findElement(locate.HOTP_btn_dateNext).click(); // Using hotel next
+                driver.findElement(locate.RENP_btn_dateNext).click(); // Using hotel next
                 sleep(1000);
 
                 monthsYear = driver.findElements(locate.RENP_txt_dateCurrentMonths_Year);
@@ -51,7 +51,7 @@ public class RentalProductPage extends base {
             int selectedMonth = date.getMonth() + FIX_MONTH;
 
             while (selectedMonth > currentMonth){
-                driver.findElement(locate.HOTP_btn_dateNext).click();
+                driver.findElement(locate.RENP_btn_dateNext).click();
                 sleep(1000);
 
                 monthsYear = driver.findElements(locate.RENP_txt_dateCurrentMonths_Year);
@@ -59,18 +59,15 @@ public class RentalProductPage extends base {
                 currentMonth = convertMonthTextToInt(monthYear_parts[0]);
             }
 
-
             // Day
             List<WebElement> days = driver.findElements(locate.RENP_btn_dateDays);
             int selectedDay = date.getDate();
             for (WebElement ele : days){
                 if (Integer.parseInt(ele.getText()) == selectedDay){
-                    ele.click();
+                    getParentElement(ele).click();
                     break;
                 }
             }
-
-
         } catch (Exception e){
             Assert.fail("ERROR: Exception - " + e);
         }
@@ -78,6 +75,10 @@ public class RentalProductPage extends base {
 
     public void setDates(String startDate, String endDate) {
         try {
+            scroll_XY(0, 50);
+            sleep(2000);
+            waitVisibility(20, locate.RENP_btn_dates);
+
             driver.findElement(locate.RENP_btn_dates).click();
 
             selectDate(startDate);

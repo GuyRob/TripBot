@@ -18,6 +18,7 @@ public class ThingProductPage extends base {
     }
 
     public String visitWebsite(){
+        sleep(2000);
         waitVisibility(10, locate.TNGP_btn_visitWebsite);
 
         WebElement btn_visitWebsite = driver.findElement(locate.TNGP_btn_visitWebsite);

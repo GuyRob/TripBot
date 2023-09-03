@@ -19,7 +19,7 @@ public class locate {
     public static By HP_inp_SearchThing = By.xpath("((//input[@role='searchbox']) | //input[@placeholder='Where to?'])[3] | //input[@placeholder='Attraction, activity or destination']");
 
     public static By HP_btn_SearchRental = By.xpath("//*[@href='/Rentals' or text()='Vacation Rentals']");
-    public static By HP_inp_SearchRental = By.xpath("((//input[@role='searchbox']) | //input[@placeholder='Where to?'])[3] | //input[@placeholder='Destination']");
+    public static By HP_inp_SearchRental = By.xpath("((//input[@role='searchbox']) | //input[@placeholder='Where to?'])[3] | //input[@placeholder='Destination'] | //input[@placeholder='Where do you want to go?']");
 
 
     public static By HP_btn_SearchRestaurant = By.xpath("//*[@href='/Restaurants' or text()='Restaurants']");
@@ -102,8 +102,10 @@ public class locate {
     public static By RENP_btn_dates = By.xpath("//div[@data-automation='checkInCheckOutPicker']");
 
     // Date
-    public static By RENP_txt_dateCurrentMonths_Year = By.xpath("//div[@data-automation='dayCalendar']//h2");
-    public static By RENP_btn_dateDays = By.xpath("//div[@role='row']//div[@role='gridcell']//text()");
+    public static By RENP_txt_dateCurrentMonths_Year = By.xpath("//div[@class='dQscM']//div[@data-automation='dayCalendar']//h2"); // OLD //div[@data-automation='dayCalendar']//h2
+    public static By RENP_btn_dateDays = By.xpath("//div[@class='dQscM']//div[@role='row']//div[@role='gridcell' and @aria-disabled='false']//div");
+
+    public static By RENP_btn_dateNext = By.xpath("//div[@class='dQscM']//button[@data-testid='nav_next'] | //div[@class='dQscM']//button[@aria-label='Next month']");
 
 
     // Guests

@@ -53,6 +53,8 @@ public class P2_topAttraction extends base {
     @Test
     public void P2_selectTopAttraction(){
         searchPage.TNG_topAttraction_ByIndex(1);
+        screenShot("Things\\P2", "P2_selectTopAttraction");
+        allure_LogAttachment("Selecting Attraction", "Things\\P2", "P2_selectTopAttraction");
         // todo add assert
     }
 

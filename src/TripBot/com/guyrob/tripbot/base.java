@@ -32,6 +32,14 @@ public class base {
     public static DevTools devTools;
     public static Actions actions;
 
+    /** Debugging: */
+    public void markOverlapElement(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", element);
+    }
+
+
+    /**General: */
+
     public boolean getCurrentURL(String provider) {
         return driver.getCurrentUrl().toLowerCase().contains(provider.toLowerCase());
     }
@@ -96,9 +104,20 @@ public class base {
         }
     }
 
-    /**
+    /** Actions: */
+    public void scroll_Element(WebElement ele){
+        actions = new Actions(driver);
+        actions.scrollToElement(ele).perform();
+    }
+
+    public void scroll_XY(int x, int y){
+        actions = new Actions(driver);
+        actions.scrollByAmount(x, y).perform();
+    }
+
+    /** ============================
      * Allure:
-     */
+     ===============================*/
     public void allure_Log(String message) {
         Allure.step(message);
     }

@@ -2,7 +2,6 @@ import com.guyrob.tripbot.General.HomePage;
 import com.guyrob.tripbot.ProductPages.HotelProductPage;
 import com.guyrob.tripbot.General.SearchPage;
 import com.guyrob.tripbot.base;
-import io.qameta.allure.Allure;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -10,9 +9,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import tests.testdata;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -63,9 +59,9 @@ public class P1_sanityHotelSearch extends base {
 
     @Test
     public void P3_selectDates(){
-        hotelProductPage.setDates(testdata.hotels_StartDate, testdata.hotels_EndDate, true);
-        allure_Log("Start date: " + testdata.hotels_StartDate + " End date: " + testdata.hotels_EndDate);
-        Assert.assertTrue(hotelProductPage.checkDates(testdata.hotels_StartDate, testdata.hotels_EndDate));
+        hotelProductPage.setDates(testdata.sanity_StartDate, testdata.sanity_EndDate, true); // TODO need to handle dates with price
+        allure_Log("Start date: " + testdata.sanity_StartDate + " End date: " + testdata.sanity_EndDate);
+        Assert.assertTrue(hotelProductPage.checkDates(testdata.sanity_StartDate, testdata.sanity_EndDate));
     }
 
     @Test
