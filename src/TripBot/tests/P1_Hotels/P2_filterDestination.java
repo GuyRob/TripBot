@@ -58,8 +58,8 @@ public class P2_filterDestination extends base {
     @Test
     public void P2_selectDates(){
         sleep(1000);
-        hotelProductPage.setDates(testdata.hotels_StartDate, testdata.hotels_EndDate, false);
-        allure_Log("Start date: " + testdata.hotels_StartDate + " End date: " + testdata.hotels_EndDate);
+        hotelProductPage.setDates(testdata.sanity_StartDate, testdata.sanity_EndDate, false);
+        allure_Log("Start date: " + testdata.sanity_StartDate + " End date: " + testdata.sanity_EndDate);
 //        Assert.assertTrue(searchPage.HOT_checkDates(testdata.hotels_StartDate, testdata.hotels_EndDate)); // TODO need to fix - in search page date is without year
     }
 

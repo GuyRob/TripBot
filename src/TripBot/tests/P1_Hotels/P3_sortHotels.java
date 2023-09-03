@@ -55,8 +55,8 @@ public class P3_sortHotels extends base {
     @Test
     public void P2_selectDates(){
         sleep(1000);
-        hotelProductPage.setDates(testdata.hotels_StartDate, testdata.hotels_EndDate, false);
-        allure_Log("Start date: " + testdata.hotels_StartDate + " End date: " + testdata.hotels_EndDate);
+        hotelProductPage.setDates(testdata.sanity_StartDate, testdata.sanity_EndDate, false);
+        allure_Log("Start date: " + testdata.sanity_StartDate + " End date: " + testdata.sanity_EndDate);
 //        Assert.assertTrue(searchPage.HOT_checkDates(testdata.hotels_StartDate, testdata.hotels_EndDate)); // TODO need to check why not working
     }
 
@@ -87,7 +87,7 @@ public class P3_sortHotels extends base {
 
     @Test
     public void P5_HotelByPrice(){
-        searchPage.selectProduct_ByPrice();
+        searchPage.selectProduct_ByPrice(); // TODO check why out of bounds
         tabs = switchTab(1);
         screenShot("Hotels\\P3", "P5_HotelByPrice");
         allure_LogAttachment("Selecting lowest price hotel", "Hotels\\P3", "P5_HotelByPrice");
