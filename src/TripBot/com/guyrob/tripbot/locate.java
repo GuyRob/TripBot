@@ -25,6 +25,15 @@ public class locate {
     public static By HP_btn_SearchRestaurant = By.xpath("//*[@href='/Restaurants' or text()='Restaurants']");
     public static By HP_inp_SearchRestaurant = By.xpath("((//input[@role='searchbox']) | //input[@placeholder='Where to?'])[3] | //input[@placeholder='Restaurant or destination']");
 
+    // Sign In
+    public static By HP_btn_signIn = By.xpath("//a[contains(@href, 'RegistrationController')]");
+    public static By HP_btn_signIn_Options = By.xpath("//div[@id='regBody']//span[@class='textContainer']");
+    public static By HP_inp_signIn_Email = By.xpath("//input[@id='regSignIn.email']");
+    public static By HP_inp_signIn_Password = By.xpath("//input[@id='regSignIn.password']");
+    public static By HP_btn_signIn_Submit = By.xpath("//div[@id='regSignIn']//button[@type='submit']");
+
+
+
 
     /** Search Page (General)*/
     public static By SP_txt_searchResult = By.xpath("//span[@class='title-query'] | //h1[@data-automation='header_geo_title'] | //div[@data-automation='main_h1']//h1");

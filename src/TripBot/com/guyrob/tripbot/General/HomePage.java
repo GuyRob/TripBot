@@ -70,4 +70,25 @@ public class HomePage extends base {
         driver.findElement(locate.HP_inp_SearchRental).sendKeys(rentName + Keys.ENTER);
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
+
+    public void signIn_Email(String email, String password){
+        driver.findElement(locate.HP_btn_signIn).click();
+//        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        sleep(2000);
+        driver.switchTo().frame(3);
+
+        List <WebElement> signInOptions = driver.findElements(locate.HP_btn_signIn_Options);
+        signInOptions.get(1).click();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+        driver.findElement(locate.HP_inp_signIn_Email).sendKeys(email);
+        driver.findElement(locate.HP_inp_signIn_Password).sendKeys(password);
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+
+        driver.findElement(locate.HP_btn_signIn_Submit).click();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        driver.switchTo().defaultContent();
+    }
+
+
 }
