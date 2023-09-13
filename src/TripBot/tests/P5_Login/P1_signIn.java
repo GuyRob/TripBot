@@ -27,7 +27,8 @@ public class P1_signIn extends base {
 
     @Test
     public void P1_signIn(){
-        homepage.signIn_Email(testdata.userName, testdata.password);
+        homepage.signIn_Email(testdata.userName, testdata.password); // TODO need to check why sometimes fails
+        
     }
 
 }

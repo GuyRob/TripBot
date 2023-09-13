@@ -39,7 +39,7 @@ public class P1_sanityRentSearch extends base {
 
     @AfterClass
     public void afterClass() {
-//        driver.quit();
+        driver.quit();
     }
 
     @Test

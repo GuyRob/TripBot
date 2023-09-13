@@ -34,4 +34,13 @@
             <!-- Add more class elements for other test classes -->
         </classes>
     </test>
+
+    <test name="P5_Login">
+        <classes>
+            <class name="P1_signIn" />
+
+            <!-- Add more class elements for other test classes -->
+        </classes>
+    </test>
+
 </suite>

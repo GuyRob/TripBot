@@ -61,12 +61,10 @@ public class P3_sortHotels extends base {
     }
 
     @Test
-    public void P3_selectGuestsChild(){
-        hotelProductPage.setGuests(rooms, adults); // TODO replace with children
-//        hotelProductPage.setGuests_children(rooms, adults, children, childAges);
+    public void P3_selectGuests(){
+        hotelProductPage.setGuests(rooms, adults);
 
-        if (hotelProductPage.checkGuests(rooms, adults)){ // TODO replace with chidren
-//        if (hotelProductPage.checkGuests_children(rooms, adults, children, childAges)){
+        if (hotelProductPage.checkGuests(rooms, adults)){
             screenShot("Hotels\\P3", "P3_selectGuestsChild");
             allure_LogAttachment("Rooms: " + rooms + " Adults: " + adults, "Hotels\\P3", "P3_selectGuestsChild");
             hotelProductPage.updateGuests();
@@ -87,7 +85,7 @@ public class P3_sortHotels extends base {
 
     @Test
     public void P5_HotelByPrice(){
-        searchPage.selectProduct_ByPrice(); // TODO check why out of bounds
+        searchPage.selectProduct_ByPrice(); // TODO check why out sometimes of bounds
         tabs = switchTab(1);
         screenShot("Hotels\\P3", "P5_HotelByPrice");
         allure_LogAttachment("Selecting lowest price hotel", "Hotels\\P3", "P5_HotelByPrice");
