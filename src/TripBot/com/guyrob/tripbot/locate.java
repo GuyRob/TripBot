@@ -13,24 +13,31 @@ public class locate {
     public static By HP_btn_SearchHotel = By.xpath("//*[@href='/Hotels' or text()='Hotels']");
     public static By HP_inp_SearchHotel = By.xpath("((//input[@role='searchbox'])[2]) | //input[@placeholder='Where to?'] | //input[contains(text(), 'Hotel')] | //input[@placeholder='Hotel name or destination']");
 
-
-
     public static By HP_btn_SearchThing = By.xpath("//*[@href='/Attractions' or text()='Things to Do']");
     public static By HP_inp_SearchThing = By.xpath("((//input[@role='searchbox']) | //input[@placeholder='Where to?'])[3] | //input[@placeholder='Attraction, activity or destination']");
 
     public static By HP_btn_SearchRental = By.xpath("//*[@href='/Rentals' or text()='Vacation Rentals']");
     public static By HP_inp_SearchRental = By.xpath("((//input[@role='searchbox']) | //input[@placeholder='Where to?'])[3] | //input[@placeholder='Destination'] | //input[@placeholder='Where do you want to go?']");
 
-
     public static By HP_btn_SearchRestaurant = By.xpath("//*[@href='/Restaurants' or text()='Restaurants']");
     public static By HP_inp_SearchRestaurant = By.xpath("((//input[@role='searchbox']) | //input[@placeholder='Where to?'])[3] | //input[@placeholder='Restaurant or destination']");
 
     // Sign In
+    public static By HP_frame_signIn = By.xpath("//iframe[@title='regcontroller']");
+    public static By HP_btn_profile = By.xpath("//a[@aria-label='Profile']");
+
     public static By HP_btn_signIn = By.xpath("//a[contains(@href, 'RegistrationController')]");
     public static By HP_btn_signIn_Options = By.xpath("//div[@id='regBody']//span[@class='textContainer']");
     public static By HP_inp_signIn_Email = By.xpath("//input[@id='regSignIn.email']");
     public static By HP_inp_signIn_Password = By.xpath("//input[@id='regSignIn.password']");
     public static By HP_btn_signIn_Submit = By.xpath("//div[@id='regSignIn']//button[@type='submit']");
+
+    public static By HP_btn_signOut = By.id("menu-item-5");
+
+    // Trips (Need to be sign in)
+    public static By HP_btn_tripsTab = By.xpath("//div[@data-automation='topNav_trips']");
+    public static By HP_btn_tripsPlanTab = By.id("menu-item-0");
+
 
 
 
@@ -58,8 +65,13 @@ public class locate {
     public static By SP_TNG_btn_TopAttractions = By.xpath("//section[@data-automation='WebPresentation_WebCategoryListShelf']//div[@class='hZuqH']//span/div");
 
 
-    /** Product Page (General)*/
-    // TODO Will be checked on thingProductPage
+    /** LoggedInPages */
+
+    // Trips
+    public static By LI_TRP_btn_createNewTrip = By.xpath("//button[@data-automation='trips-create-trip-default'] | //div[text()='Do it yourself']");
+    public static By LI_TRP_inp_tripName = By.xpath("//input[@name='tripName']");
+    public static By LI_TRP_btn_createTrip = By.xpath("//button[@data-automation='stat_modal_create_button']");
+    public static By LI_TRP_List_Trips = By.xpath("//a//div[contains(@data-automation, 'trip-card')]");
 
     /** HotelsProductPage */
     public static By HOTP_txt_searchResult = By.id("HEADING");

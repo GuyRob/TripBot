@@ -69,7 +69,7 @@ public class P1_sanityHotelSearch extends base {
         hotelProductPage.setGuests_children(rooms, adults, children, childAges);
         if (hotelProductPage.checkGuests_children(rooms, adults, children, childAges)){
             screenShot("Hotels\\P1", "P4_selectGuests");
-            allure_LogAttachment("Rooms: " + rooms + " Adults: " + adults + " Children: " + children + " Children ages: " + childAges.toString(), "Hotels\\P1", "P4_selectGuests");
+            allure_LogAttachment("Rooms: " + rooms + " Adults: " + adults + " Children: " + children + " Children ages: " + childAges.toString(), "Hotels\\P1", "P4_selectGuests"); // TODO validate childAges
             hotelProductPage.updateGuests();
         } else {
             Assert.fail("Wrong guests selected!");
