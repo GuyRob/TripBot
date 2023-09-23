@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 
 public class locate {
     /** HomePage */
+    public static By HP_btn_Logo = By.xpath("//a[@href='/']");
     public static By HP_inp_SearchOptionList = By.xpath("//div[@id='typeahead_results']//a");
 
 
@@ -47,6 +48,8 @@ public class locate {
     public static By SP_btn_productsList = By.xpath("//div[@class='result-title']/span | //button[@data-testid='view_deal_button']");
     public static By SP_txt_productsList_prices = By.xpath("//div[@class='hjfcb']//span[@class='fwoto']/span");
 
+    public static By SP_btn_save = By.xpath("//button[@aria-label='Save to a trip']");
+
     // Filters
     public static String SP_xpath_filters = "//div[@data-automation='LeftRail']";
     public static By SP_txt_selectedFilters = By.xpath("//div[@data-test-target='filter-bar']//span/div"); // OLD: //div[@data-test-target='filter-bar']//text()
@@ -72,6 +75,8 @@ public class locate {
     public static By LI_TRP_inp_tripName = By.xpath("//input[@name='tripName']");
     public static By LI_TRP_btn_createTrip = By.xpath("//button[@data-automation='stat_modal_create_button']");
     public static By LI_TRP_List_Trips = By.xpath("//a//div[contains(@data-automation, 'trip-card')]");
+
+    public static By LI_TRP_btn_saveToATrip = By.xpath("//button[contains(@data-automation, 'stat-modal-trip')]");
 
     /** HotelsProductPage */
     public static By HOTP_txt_searchResult = By.id("HEADING");

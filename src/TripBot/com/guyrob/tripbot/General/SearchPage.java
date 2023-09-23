@@ -17,8 +17,19 @@ import java.util.stream.Collectors;
 
 public class SearchPage extends base {
 
+    public void saveProduct_ByIndex(int index) {
+        waitVisibility(5, locate.SP_btn_save);
+        List<WebElement> products = driver.findElements(locate.SP_btn_save);
+        products.get(index-1).click();
+        sleep(2000);
 
+        List<WebElement> myTrips = driver.findElements(locate.LI_TRP_btn_saveToATrip);
+        if (!myTrips.isEmpty()){
+            myTrips.get(0).click();
+        }
+    }
 
+    // Select Product
     public void selectProduct_ByName(String name){
         waitVisibility(5, locate.SP_btn_productsList);
         List<WebElement> products = driver.findElements(locate.SP_btn_productsList);
@@ -168,5 +179,6 @@ public class SearchPage extends base {
         List <WebElement> topAttractions = driver.findElements(locate.SP_TNG_btn_TopAttractions);
         topAttractions.get(index-1).click();
     }
+
 
 }
