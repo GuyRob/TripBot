@@ -14,6 +14,11 @@ import java.util.concurrent.TimeUnit;
 
 public class HomePage extends base {
 
+    public void clickLogo(){
+        driver.findElement(locate.HP_btn_Logo).click();
+        waitVisibility(5000, locate.HP_btn_SearchHotel);
+    }
+
     public void SearchHotel(String hotel) {
             driver.findElement(locate.HP_btn_SearchHotel).click();
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
