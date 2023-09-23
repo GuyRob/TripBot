@@ -71,11 +71,13 @@ public class HomePage extends base {
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
+    // Sign In
     public void signIn_Email(String email, String password){
         driver.findElement(locate.HP_btn_signIn).click();
-//        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         sleep(2000);
-        driver.switchTo().frame(3);
+
+        WebElement ele_signRegister = driver.findElement(locate.HP_frame_signIn);
+        driver.switchTo().frame(ele_signRegister);
 
         List <WebElement> signInOptions = driver.findElements(locate.HP_btn_signIn_Options);
         signInOptions.get(1).click();
@@ -86,9 +88,30 @@ public class HomePage extends base {
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 
         driver.findElement(locate.HP_btn_signIn_Submit).click();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        sleep(2000);
         driver.switchTo().defaultContent();
     }
 
+    public void signOut() {
+        driver.findElement(locate.HP_btn_profile).click();
+        waitVisibility(5, locate.HP_btn_signOut);
+        driver.findElement(locate.HP_btn_signOut).click();
+        sleep(2000);
+    }
+
+    public boolean checkSignIn(){
+        return driver.findElement(locate.HP_btn_profile).isDisplayed();
+    }
+
+    public boolean checkSignOut(){
+        return driver.findElement(locate.HP_btn_signIn).isDisplayed();
+    }
+
+    public void selectTripsTab() {
+        driver.findElement(locate.HP_btn_tripsTab).click();
+        waitVisibility(5, locate.HP_btn_tripsPlanTab);
+        driver.findElement(locate.HP_btn_tripsPlanTab).click();
+        sleep(2000);
+    }
 
 }
