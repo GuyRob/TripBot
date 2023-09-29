@@ -59,7 +59,7 @@ public class P1_sanityRentSearch extends base {
     }
 
     @Test
-    public void P3_selectDates(){
+    public void P3_selectDates(){ // TODO need to check why not selecting dates sometimes
         rentalProductPage.setDates(testdata.sanity_StartDate, testdata.sanity_EndDate);
         allure_Log("Start date: " + testdata.sanity_StartDate + " End date: " + testdata.sanity_EndDate);
         Assert.assertTrue(rentalProductPage.checkDates(testdata.sanity_StartDate, testdata.sanity_EndDate));
