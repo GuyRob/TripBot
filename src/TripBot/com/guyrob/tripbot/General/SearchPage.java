@@ -178,6 +178,7 @@ public class SearchPage extends base {
     public void TNG_topAttraction_ByIndex(int index) {
         List <WebElement> topAttractions = driver.findElements(locate.SP_TNG_btn_TopAttractions);
         topAttractions.get(index-1).click();
+        switchTab(1);
     }
 
 

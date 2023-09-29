@@ -121,7 +121,7 @@ public class locate {
 
     /** ThingsPages */
     public static By TNGP_txt_searchResult = By.xpath("//h1[@data-automation='mainH1']");
-    public static By TNGP_btn_visitWebsite = By.xpath("//div[@data-automation='WebPresentation_PoiOverviewWeb']//span[contains(text(), 'Visit website')]");
+    public static By TNGP_btn_visitWebsite = By.xpath("//div[@data-automation='WebPresentation_PoiOverviewWeb']//span[contains(text(), 'Visit website')] | //a[@rel='nofollow']");
 
     /** RentalProductPage*/
     public static By RENP_txt_searchResult = By.xpath("//h1[@data-test-target='rental-detail-header']");

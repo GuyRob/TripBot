@@ -60,7 +60,7 @@ public class P2_topAttraction extends base {
 
     @Test
     public void P3_visitWebsite(){
-        String vendor = thingProductPage.visitWebsite(); // @TODO need to check why not working in P2 when xpath is correct & working in P1
+        String vendor = thingProductPage.visitWebsite();
         tabs = switchTab(2);
         screenShot("Things\\P2", "P3_visitWebsite");
         allure_LogAttachment("Visit website", "Things\\P2", "P3_visitWebsite");
