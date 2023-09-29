@@ -38,7 +38,7 @@ public class P1_sanityThingSearch extends base {
 
     @AfterClass
     public void afterClass() {
-        driver.quit();
+//        driver.quit();
     }
 
     @Test
