@@ -2,6 +2,8 @@ import com.guyrob.tripbot.General.HomePage;
 import com.guyrob.tripbot.General.LoggedInPages;
 import com.guyrob.tripbot.General.SearchPage;
 import com.guyrob.tripbot.base;
+import com.guyrob.tripbot.locate;
+import dev.failsafe.internal.util.Durations;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -9,6 +11,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import tests.testdata;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class P2_planTrip extends base {
@@ -20,6 +23,7 @@ public class P2_planTrip extends base {
     String tripName = "guyrob.tripbot.mexicocity.planTrip";
     String destinationName = "Mexico City";
     String sort_ByDistance = "Distance to city center";
+    int tripDuration;
 
     @BeforeClass
     public void beforeClass(){
@@ -27,6 +31,8 @@ public class P2_planTrip extends base {
         homepage = new HomePage();
         loggedInPages = new LoggedInPages();
         searchPage = new SearchPage();
+
+        tripDuration = Calc_daysDuration(testdata.sanity_StartDate, testdata.sanity_EndDate);
 
         driver.manage().window().maximize();
         driver.get(testdata.url);
@@ -83,6 +89,12 @@ public class P2_planTrip extends base {
         searchPage.saveProduct_ByIndex(1);
         screenShot("Login\\P2", "P6_saveHotel");
         allure_LogAttachment("Sort + saving hotel", "Login\\P2", "P6_saveHotel");
+    }
+
+    @Test
+    public void P7_searchThings(){
+        scroll_Element(driver.findElement(locate.HP_btn_Logo));
+        homepage.searchThingBtn();
     }
 
 

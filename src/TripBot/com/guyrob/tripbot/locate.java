@@ -15,7 +15,7 @@ public class locate {
     public static By HP_inp_SearchHotel = By.xpath("((//input[@role='searchbox'])[2]) | //input[@placeholder='Where to?'] | //input[contains(text(), 'Hotel')] | //input[@placeholder='Hotel name or destination']");
 
     public static By HP_btn_SearchThing = By.xpath("//*[@href='/Attractions' or text()='Things to Do']");
-    public static By HP_inp_SearchThing = By.xpath("((//input[@role='searchbox']) | //input[@placeholder='Where to?'])[3] | //input[@placeholder='Attraction, activity or destination']");
+    public static By HP_inp_SearchThing = By.xpath("((//input[@role='searchbox']) | //input[@placeholder='Where to?'])[3] | //input[@placeholder='Attraction, activity or destination'] | //input[@title='Search']");
 
     public static By HP_btn_SearchRental = By.xpath("//*[@href='/Rentals' or text()='Vacation Rentals']");
     public static By HP_inp_SearchRental = By.xpath("((//input[@role='searchbox']) | //input[@placeholder='Where to?'])[3] | //input[@placeholder='Destination'] | //input[@placeholder='Where do you want to go?']");
@@ -56,8 +56,8 @@ public class locate {
 
 
     // Sort
-    public static By SP_btn_sort = By.xpath("//div[@data-automation='sort']");
-    public static By SP_btn_sortOptions = By.xpath("//div[@data-automation='sort']//li[@role='none']//div/span");
+    public static By SP_btn_sort = By.xpath("//div[@data-automation='sort'] | //span[@data-automation='sort']");
+    public static By SP_btn_sortOptions = By.xpath("//div[@data-automation='sort']//li[@role='none']//div/span | //span[@data-automation='sort']//div[@class='BHdOL w t UXISu q Wh wBoXT yydJZ sVRnI sHXIF']/div");
 
     // Hotels
     public static By SP_HOT_childsAge = By.xpath("//span[@class='NK']");

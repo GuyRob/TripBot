@@ -59,6 +59,11 @@ public class HomePage extends base {
         options.get(index-1).click();
     }
 
+    public void searchThingBtn() {
+        driver.findElement(locate.HP_btn_SearchThing).click();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+    }
+
     public void searchRestaurant(String thing) {
         driver.findElement(locate.HP_btn_SearchRestaurant).click();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
