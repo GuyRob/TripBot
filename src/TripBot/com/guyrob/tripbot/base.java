@@ -20,9 +20,10 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.attribute.PosixFilePermission;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.Month;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 import io.qameta.allure.*;
@@ -102,6 +103,17 @@ public class base {
         } catch (Exception e) {
             allure_FailLog("ERROR: Screenshot failed - " + e);
         }
+    }
+
+    public int Calc_daysDuration(String startDate, String endDate){
+        // Parse the dates
+        LocalDate StartDate = LocalDate.parse(startDate);
+        LocalDate EndDate = LocalDate.parse(endDate);
+
+        // Calculate the duration in days
+        long daysBetween = ChronoUnit.DAYS.between(StartDate, EndDate);
+
+        return (int) daysBetween;
     }
 
     /** Actions: */
