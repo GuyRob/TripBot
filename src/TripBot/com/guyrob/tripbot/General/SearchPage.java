@@ -29,6 +29,13 @@ public class SearchPage extends base {
         }
     }
 
+    public void saveProducts_ByAmount(int amount) {
+        for (int i=0; i<amount; i++){
+            saveProduct_ByIndex(i);
+            scroll_XY(0, 500);
+        }
+    }
+
     // Select Product
     public void selectProduct_ByName(String name){
         waitVisibility(5, locate.SP_btn_productsList);
@@ -178,6 +185,11 @@ public class SearchPage extends base {
     public void TNG_topAttraction_ByIndex(int index) {
         List <WebElement> topAttractions = driver.findElements(locate.SP_TNG_btn_TopAttractions);
         topAttractions.get(index-1).click();
+        switchTab(1);
+    }
+
+    public void TNG_topAttraction_SeeAll(){
+        driver.findElement(locate.SP_TNG_btn_TopAttractions_SeeAll).click();
         switchTab(1);
     }
 

@@ -3,7 +3,6 @@ import com.guyrob.tripbot.General.LoggedInPages;
 import com.guyrob.tripbot.General.SearchPage;
 import com.guyrob.tripbot.base;
 import com.guyrob.tripbot.locate;
-import dev.failsafe.internal.util.Durations;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -11,7 +10,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import tests.testdata;
 
-import java.time.Duration;
+import java.time.LocalTime;
 import java.util.concurrent.TimeUnit;
 
 public class P2_planTrip extends base {
@@ -89,14 +88,27 @@ public class P2_planTrip extends base {
         searchPage.saveProduct_ByIndex(1);
         screenShot("Login\\P2", "P6_saveHotel");
         allure_LogAttachment("Sort + saving hotel", "Login\\P2", "P6_saveHotel");
+        //TODO add assert
     }
 
     @Test
-    public void P7_searchThings(){
+    public void P7_searchAttractions(){
         scroll_Element(driver.findElement(locate.HP_btn_Logo));
         homepage.searchThingBtn();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        searchPage.TNG_topAttraction_SeeAll();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        switchTab(1);
+        // TODO add log
+        //TODO add assert
     }
 
-
+    @Test
+    public void P8_saveAttractions(){
+        scroll_XY(0, 500);
+        searchPage.saveProducts_ByAmount(tripDuration); // TODO need to check why not working (how getting index -1?)
+        // TODO add screenshot
+        //TODO add assert
+    }
 
 }
