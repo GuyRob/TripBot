@@ -61,7 +61,6 @@ public class HomePage extends base {
 
     public void searchThingBtn() {
         driver.findElement(locate.HP_btn_SearchThing).click();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
     public void searchRestaurant(String thing) {

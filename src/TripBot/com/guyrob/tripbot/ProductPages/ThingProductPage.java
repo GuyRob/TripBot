@@ -15,7 +15,6 @@ import java.net.URL;
 
 public class ThingProductPage extends base {
 
-    /** Details:*/
     public String getThingName(){
         return driver.findElement(locate.TNGP_txt_searchResult).getText();
     }

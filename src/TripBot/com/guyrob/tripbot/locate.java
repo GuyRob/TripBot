@@ -66,6 +66,7 @@ public class locate {
 
     // Things
     public static By SP_TNG_btn_TopAttractions = By.xpath("//section[@data-automation='WebPresentation_WebCategoryListShelf']//div[@class='hZuqH']//span/div");
+    public static By SP_TNG_btn_TopAttractions_SeeAll = By.xpath("//section[@data-automation='WebPresentation_WebCategoryListShelf']//span[contains(text(), 'See all')]");
 
 
     /** LoggedInPages */
