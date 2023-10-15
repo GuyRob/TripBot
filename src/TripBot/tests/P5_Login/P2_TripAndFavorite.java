@@ -10,10 +10,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import tests.testdata;
 
-import java.time.LocalTime;
 import java.util.concurrent.TimeUnit;
 
-public class P2_planTrip extends base {
+public class P2_TripAndFavorite extends base {
     HomePage homepage;
     LoggedInPages loggedInPages;
     SearchPage searchPage;
@@ -106,7 +105,7 @@ public class P2_planTrip extends base {
     @Test
     public void P8_saveAttractions(){
         scroll_XY(0, 500);
-        searchPage.saveProducts_ByAmount(tripDuration); // TODO need to check why not working (how getting index -1?)
+        searchPage.saveProduct_ByIndex(1);
         // TODO add screenshot
         //TODO add assert
     }
