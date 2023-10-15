@@ -38,7 +38,7 @@
     <test name="P5_Login">
         <classes>
             <class name="P1_sanitySignInAndOut" />
-            <class name="P2_planTrip" />
+            <class name="P2_TripAndFavorite" />
             <class name="P3_TripAI" />
 
             <!-- Add more class elements for other test classes -->

@@ -20,19 +20,13 @@ public class SearchPage extends base {
     public void saveProduct_ByIndex(int index) {
         waitVisibility(5, locate.SP_btn_save);
         List<WebElement> products = driver.findElements(locate.SP_btn_save);
+        scroll_Element(products.get(index));
         products.get(index-1).click();
         sleep(2000);
 
         List<WebElement> myTrips = driver.findElements(locate.LI_TRP_btn_saveToATrip);
         if (!myTrips.isEmpty()){
             myTrips.get(0).click();
-        }
-    }
-
-    public void saveProducts_ByAmount(int amount) {
-        for (int i=0; i<amount; i++){
-            saveProduct_ByIndex(i);
-            scroll_XY(0, 500);
         }
     }
 
@@ -189,6 +183,8 @@ public class SearchPage extends base {
     }
 
     public void TNG_topAttraction_SeeAll(){
+        waitVisibility(10, locate.SP_TNG_btn_TopAttractions_SeeAll);
+        scroll_Element(driver.findElement(locate.SP_TNG_btn_TopAttractions_SeeAll));
         driver.findElement(locate.SP_TNG_btn_TopAttractions_SeeAll).click();
         switchTab(1);
     }

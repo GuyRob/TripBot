@@ -76,8 +76,22 @@ public class locate {
     public static By LI_TRP_inp_tripName = By.xpath("//input[@name='tripName']");
     public static By LI_TRP_btn_createTrip = By.xpath("//button[@data-automation='stat_modal_create_button']");
     public static By LI_TRP_List_Trips = By.xpath("//a//div[contains(@data-automation, 'trip-card')]");
-
     public static By LI_TRP_btn_saveToATrip = By.xpath("//button[contains(@data-automation, 'stat-modal-trip')]");
+
+    // Trip AI
+    public static By LI_TRP_btn_tripAI = By.xpath("//button[@data-automation='trips-create-trip-gai']");
+    public static By LI_TRP_inp_tripAI_search = By.xpath("//div[@data-test-attribute='gai-typeahead']");
+    public static By LI_TRP_btn_tripAI_next = By.xpath("//button[@data-automation='gai_modal_next_button']");
+    public static By LI_TRP_btn_tripAI_days = By.xpath("//button[@data-automation='gai_dates_prompt_tab_days']");
+    public static By LI_TRP_txt_tripAI_days = By.xpath("//div[@class='PsGIp c']/span");
+    public static By LI_TRP_btn_tripAI_nextDay = By.xpath("//button[@data-automation='gai_dates_prompt_days_plus_button']");
+    public static By LI_TRP_btn_tripAI_prevDay = By.xpath("//button[@data-automation='gai_dates_prompt_days_minus_button']");
+    public static By LI_TRP_btn_tripAI_comingWIth(String partners){
+        return By.xpath("//button[@aria-label='Select "+partners+"']");
+    }
+
+
+
 
     /** HotelsProductPage */
     public static By HOTP_txt_searchResult = By.id("HEADING");
