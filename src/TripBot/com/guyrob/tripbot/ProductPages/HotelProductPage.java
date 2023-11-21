@@ -25,7 +25,7 @@ public class HotelProductPage extends base {
     }
 
     /** Dates:*/
-    private void selectDate(String dateString) {
+    private void selectDate(String dateString, boolean ignoreFirst) {
         try {
             final int FIX_YEAR = 1900;
             final int FIX_MONTH = 1;
@@ -67,6 +67,10 @@ public class HotelProductPage extends base {
             List<WebElement> days = driver.findElements(locate.HOTP_btn_dateDays);
             int selectedDay = date.getDate();
             for (WebElement ele : days){
+                if (ignoreFirst){
+                    ignoreFirst = false;
+                    continue; // Skip the first iteration (for endDate)
+                }
                 if (Integer.parseInt(ele.getText()) == selectedDay){
                     ele.click();
                     break;
@@ -91,9 +95,9 @@ public class HotelProductPage extends base {
                 }
             }
 
-            selectDate(startDate);
+            selectDate(startDate, false);
             sleep(2000);
-            selectDate(endDate);
+            selectDate(endDate, true);
 
         } catch (Exception e){
             Assert.fail("ERROR: Exception - " + e);

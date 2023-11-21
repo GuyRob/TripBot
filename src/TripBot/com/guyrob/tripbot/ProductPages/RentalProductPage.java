@@ -76,10 +76,9 @@ public class RentalProductPage extends base {
     public void setDates(String startDate, String endDate) {
         try {
             scroll_XY(0, 50);
-            sleep(2000);
             waitVisibility(20, locate.RENP_btn_dates);
 
-            driver.findElement(locate.RENP_btn_dates).click();
+//            driver.findElement(locate.RENP_btn_dates).click();
 
             selectDate(startDate);
             sleep(2000);

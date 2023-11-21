@@ -46,7 +46,7 @@ public class locate {
     /** Search Page (General)*/
     public static By SP_txt_searchResult = By.xpath("//span[@class='title-query'] | //h1[@data-automation='header_geo_title'] | //div[@data-automation='main_h1']//h1");
     public static By SP_btn_productsList = By.xpath("//div[@class='result-title']/span | //button[@data-testid='view_deal_button']");
-    public static By SP_txt_productsList_prices = By.xpath("//div[@class='hjfcb']//span[@class='fwoto']/span");
+    public static By SP_txt_productsList_prices = By.xpath("//div[@class='hjfcb']//span[@class='fwoto']/span | //span[@class='fwoto f']/span");
 
     public static By SP_btn_save = By.xpath("//button[@aria-label='Save to a trip']");
 
@@ -65,7 +65,7 @@ public class locate {
     public static By SP_HOT_btn_checkOut = By.xpath("//div[@data-automation='checkout']//span");
 
     // Things
-    public static By SP_TNG_btn_TopAttractions = By.xpath("//section[@data-automation='WebPresentation_WebCategoryListShelf']//div[@class='hZuqH']//span/div");
+    public static By SP_TNG_btn_TopAttractions = By.xpath("//section[@data-automation='WebPresentation_WebCategoryListShelf']//article | //section[@data-automation='WebPresentation_WebCategoryListShelf']//div[@class='hZuqH']//span/div");
     public static By SP_TNG_btn_TopAttractions_SeeAll = By.xpath("//section[@data-automation='WebPresentation_WebCategoryListShelf']//span[contains(text(), 'See all')]");
 
 
