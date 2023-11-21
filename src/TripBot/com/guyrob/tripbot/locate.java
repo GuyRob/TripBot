@@ -97,8 +97,8 @@ public class locate {
     public static By HOTP_txt_searchResult = By.id("HEADING");
 
     // Dates (CheckIn)
-    public static By HOTP_btn_checkIn = By.xpath("//div[@data-automation='checkin']");
-    public static By HOTP_btn_checkOut = By.xpath("//div[@data-automation='checkout']");
+    public static By HOTP_btn_checkIn = By.xpath("//div[@data-automation='checkin']//div/span"); //  | //div[@data-automation='checkin']
+    public static By HOTP_btn_checkOut = By.xpath("//div[@data-automation='checkout']//div/span"); //  | //div[@data-automation='checkout']
 
     public static By HOTP_btn_datePicker = By.xpath("//div[@data-testid='day_picker']");
     public static By HOTP_btn_dateDays = By.xpath("//div[@role='row']//div[@role='gridcell']/div/div[1] | //div[@role='row']//div[@role='gridcell']"); // OLD //div[@role='row']//div[@role='gridcell']

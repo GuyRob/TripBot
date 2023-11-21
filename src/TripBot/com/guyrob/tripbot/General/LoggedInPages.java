@@ -61,7 +61,8 @@ public class LoggedInPages extends base {
         driver.findElement(locate.LI_TRP_btn_tripAI_comingWIth(comingWith)).click();
         driver.findElement(locate.LI_TRP_btn_tripAI_next).click();
 
-        // TODO Things
+        // Things
+
 
 
 
