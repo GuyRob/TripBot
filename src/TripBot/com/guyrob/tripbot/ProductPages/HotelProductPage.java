@@ -9,8 +9,12 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class HotelProductPage extends base {
@@ -97,23 +101,59 @@ public class HotelProductPage extends base {
     }
 
 
-    public boolean checkDates(String startDate, String endDate){
+    public boolean checkDates(String startDate, String endDate) {
         try {
+            DateTimeFormatter formatterActual1 = DateTimeFormatter.ofPattern("E, MMM dd yyyy", Locale.ENGLISH);
+            DateTimeFormatter formatterActual2 = DateTimeFormatter.ofPattern("MM/dd/yy", Locale.ENGLISH);
+
             String actualStartDate = driver.findElement(locate.HOTP_btn_checkIn).getText();
             String actualEndDate = driver.findElement(locate.HOTP_btn_checkOut).getText();
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            SimpleDateFormat dateFormatActual = new SimpleDateFormat("MM/dd/yy");
-            Date selectedStartDate = dateFormat.parse(startDate);
-            Date selectedEndDate = dateFormat.parse(endDate);
-            String formattedStartDate = dateFormatActual.format(selectedStartDate);
-            String formattedEndDate = dateFormatActual.format(selectedEndDate);
+            // Extract the relevant date part
+            actualStartDate = actualStartDate.substring(0, 11) + " " + startDate.substring(0, 4);
+            actualEndDate = actualEndDate.substring(0, 11) + " " + endDate.substring(0, 4);
 
-            return actualStartDate.contains(""+formattedStartDate) && actualEndDate.contains(""+formattedEndDate);
-        } catch (Exception e){
+            LocalDate parsedStartDate = LocalDate.parse(actualStartDate, formatterActual1);
+            LocalDate parsedEndDate = LocalDate.parse(actualEndDate, formatterActual1);
+
+            // If parsing with the first formatter fails, try the second one
+            if (parsedStartDate == null || parsedEndDate == null) {
+                parsedStartDate = LocalDate.parse(actualStartDate, formatterActual2);
+                parsedEndDate = LocalDate.parse(actualEndDate, formatterActual2);
+            }
+
+            DateTimeFormatter formatterTarget = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
+            String formattedStartDate = parsedStartDate.format(formatterTarget);
+            String formattedEndDate = parsedEndDate.format(formatterTarget);
+
+            return formattedStartDate.equals(startDate) && formattedEndDate.equals(endDate);
+        } catch (Exception e) {
             Assert.fail("ERROR: Exception - " + e);
             return false;
         }
+    }
+
+//    public boolean checkDatesOld(String startDate, String endDate){ TODO delete after 24.11 - if nothing fails
+//        try {
+//            String actualStartDate = driver.findElement(locate.HOTP_btn_checkIn).getText();
+//            String actualEndDate = driver.findElement(locate.HOTP_btn_checkOut).getText();
+//
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//            SimpleDateFormat dateFormatActual = new SimpleDateFormat("MM/dd/yy");
+//            Date selectedStartDate = dateFormat.parse(startDate);
+//            Date selectedEndDate = dateFormat.parse(endDate);
+//            String formattedStartDate = dateFormatActual.format(selectedStartDate);
+//            String formattedEndDate = dateFormatActual.format(selectedEndDate);
+//
+//            return actualStartDate.contains(""+formattedStartDate) && actualEndDate.contains(""+formattedEndDate);
+//        } catch (Exception e){
+//            Assert.fail("ERROR: Exception - " + e);
+//            return false;
+//        }
+//    }
+
+    public String getDates(){
+        return ""+driver.findElement(locate.HOTP_btn_checkIn).getText() + "-" + driver.findElement(locate.HOTP_btn_checkOut).getText();
     }
 
     /** Guests:*/

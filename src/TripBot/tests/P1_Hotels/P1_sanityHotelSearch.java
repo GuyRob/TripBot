@@ -61,7 +61,7 @@ public class P1_sanityHotelSearch extends base {
     public void P3_selectDates(){
         hotelProductPage.setDates(testdata.sanity_StartDate, testdata.sanity_EndDate, true); // TODO need to handle dates with price
         allure_Log("Start date: " + testdata.sanity_StartDate + " End date: " + testdata.sanity_EndDate);
-        Assert.assertTrue(hotelProductPage.checkDates(testdata.sanity_StartDate, testdata.sanity_EndDate));
+        Assert.assertTrue(hotelProductPage.checkDates(testdata.sanity_StartDate, testdata.sanity_EndDate), "ERROR: Expected - " + testdata.sanity_StartDate + "-" + testdata.sanity_EndDate + " Actual - " + hotelProductPage.getDates());
     }
 
     @Test
