@@ -7,7 +7,6 @@ package com.guyrob.tripbot.ProductPages;
 import com.guyrob.tripbot.base;
 import com.guyrob.tripbot.locate;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 import java.text.SimpleDateFormat;
@@ -31,6 +30,8 @@ public class RentalProductPage extends base {
             Date date = dateFormat.parse(dateString);
 
             // Year
+            checkOpenDates();
+
             List<WebElement> monthsYear = driver.findElements(locate.RENP_txt_dateCurrentMonths_Year);
             String[] monthYear_parts = monthsYear.get(0).getText().split(" ");
             int currentYear = Integer.parseInt(monthYear_parts[monthYear_parts.length-1]);
@@ -47,6 +48,8 @@ public class RentalProductPage extends base {
             }
 
             // Month
+            checkOpenDates();
+
             int currentMonth = convertMonthTextToInt(monthYear_parts[0]);
             int selectedMonth = date.getMonth() + FIX_MONTH;
 
@@ -60,6 +63,8 @@ public class RentalProductPage extends base {
             }
 
             // Day
+            checkOpenDates();
+
             List<WebElement> days = driver.findElements(locate.RENP_btn_dateDays);
             int selectedDay = date.getDate();
             for (WebElement ele : days){
@@ -73,13 +78,26 @@ public class RentalProductPage extends base {
         }
     }
 
+    private void checkOpenDates(){
+        final String DATES_OPEN = "DrYam";
+        String datesClassAtt = driver.findElement(locate.RENP_btn_dates).getAttribute("class");
+        System.out.println("datesClassAtt: " + datesClassAtt);
+        System.out.println("DATES_OPEN: " + DATES_OPEN);
+
+        if (!datesClassAtt.contains(DATES_OPEN)){
+            driver.findElement(locate.RENP_btn_dates).click();
+        }
+    }
+
     public void setDates(String startDate, String endDate) {
         try {
-            scroll_XY(0, 50);
-            sleep(2000);
+            scroll_XY(0, 200);
+            hoverElement(driver.findElement(locate.RENP_txt_searchResult));
             waitVisibility(20, locate.RENP_btn_dates);
-
-            driver.findElement(locate.RENP_btn_dates).click();
+//            sleep(1000);
+//            driver.findElement(locate.RENP_btn_dates).click();
+            checkOpenDates();
+            scroll_Element(driver.findElement(locate.RENP_txt_dateCurrentMonths_Year));
 
             selectDate(startDate);
             sleep(2000);
