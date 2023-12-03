@@ -72,12 +72,33 @@ public class HomePage extends base {
 
     }
 
-    public void SearchRental(String rentName) {
-        driver.findElement(locate.HP_btn_SearchRental).click();
+    public void SearchRental_AllResults(String rentName) {
+        clickElement(driver.findElement(locate.HP_btn_SearchRental));
+//        driver.findElement(locate.HP_btn_SearchRental).click();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
-        driver.findElement(locate.HP_inp_SearchRental).sendKeys(rentName + Keys.ENTER);
+        driver.findElement(locate.HP_inp_SearchRental).sendKeys(rentName);
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+        boolean firstTrySuccessful = false;
+
+        try {
+            scroll_Element(driver.findElement(locate.HP_btn_Rental_AllResults));
+            driver.findElement(locate.HP_btn_Rental_AllResults).click();
+            firstTrySuccessful = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Additional try-catch block
+        if (!firstTrySuccessful) {
+            try {
+                driver.findElement(locate.HP_inp_SearchRental).sendKeys(Keys.ENTER);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+
     }
 
     // Sign In

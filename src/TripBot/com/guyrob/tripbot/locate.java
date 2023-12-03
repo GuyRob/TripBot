@@ -19,6 +19,8 @@ public class locate {
 
     public static By HP_btn_SearchRental = By.xpath("//*[@href='/Rentals' or text()='Vacation Rentals']");
     public static By HP_inp_SearchRental = By.xpath("((//input[@role='searchbox']) | //input[@placeholder='Where to?'])[3] | //input[@placeholder='Destination'] | //input[@placeholder='Where do you want to go?']");
+    public static By HP_btn_Rental_AllResults = By.xpath("//div[@class='biGQs _P fiohW fOtGX' and contains(text(), 'See all results')]");
+
 
     public static By HP_btn_SearchRestaurant = By.xpath("//*[@href='/Restaurants' or text()='Restaurants']");
     public static By HP_inp_SearchRestaurant = By.xpath("((//input[@role='searchbox']) | //input[@placeholder='Where to?'])[3] | //input[@placeholder='Restaurant or destination']");
@@ -86,6 +88,7 @@ public class locate {
     public static By LI_TRP_txt_tripAI_days = By.xpath("//div[@class='PsGIp c']/span");
     public static By LI_TRP_btn_tripAI_nextDay = By.xpath("//button[@data-automation='gai_dates_prompt_days_plus_button']");
     public static By LI_TRP_btn_tripAI_prevDay = By.xpath("//button[@data-automation='gai_dates_prompt_days_minus_button']");
+
     public static By LI_TRP_btn_tripAI_comingWIth(String partners){
         return By.xpath("//button[@aria-label='Select "+partners+"']");
     }
@@ -140,7 +143,8 @@ public class locate {
 
     /** RentalProductPage*/
     public static By RENP_txt_searchResult = By.xpath("//h1[@data-test-target='rental-detail-header']");
-    public static By RENP_btn_dates = By.xpath("//div[@data-automation='checkInCheckOutPicker']");
+    public static By RENP_btn_dates = By.xpath("//div[@data-automation='checkInCheckOutPicker']//button"); // OLD: //div[@data-automation='checkInCheckOutPicker']
+
 
     // Date
     public static By RENP_txt_dateCurrentMonths_Year = By.xpath("//div[@class='dQscM']//div[@data-automation='dayCalendar']//h2"); // OLD //div[@data-automation='dayCalendar']//h2

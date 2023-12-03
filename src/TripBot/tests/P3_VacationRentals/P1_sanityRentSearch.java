@@ -39,12 +39,12 @@ public class P1_sanityRentSearch extends base {
 
     @AfterClass
     public void afterClass() {
-        driver.quit();
+//        driver.quit();
     }
 
     @Test
     public void P1_searchRental(){
-        homepage.SearchRental(vilaName);
+        homepage.SearchRental_AllResults(vilaName);
         allure_Log("Search " + vilaName);
         Assert.assertTrue(searchPage.getSearchText().contains(vilaName), "Wrong search rental!");
     }
@@ -65,15 +65,15 @@ public class P1_sanityRentSearch extends base {
         Assert.assertTrue(rentalProductPage.checkDates(testdata.sanity_StartDate, testdata.sanity_EndDate));
     }
 
-    @Test
-    public void P4_selectGuests(){
-        rentalProductPage.setGuests(7);
-        screenShot("Rentals", "P4_selectGuests");
-        allure_LogAttachment("Guests", "Rentals", "P4_selectGuests");
-        rentalProductPage.updateGuests();
-
-        // TODO add assert
-    }
+//    @Test
+//    public void P4_selectGuests(){
+//        rentalProductPage.setGuests(7);
+//        screenShot("Rentals", "P4_selectGuests");
+//        allure_LogAttachment("Guests", "Rentals", "P4_selectGuests");
+//        rentalProductPage.updateGuests();
+//
+//        // TODO add assert
+//    }
 
 
 

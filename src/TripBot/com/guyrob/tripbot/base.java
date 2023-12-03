@@ -127,6 +127,17 @@ public class base {
         actions.scrollByAmount(x, y).perform();
     }
 
+    public void hoverElement(WebElement ele) {
+        // Use the moveToElement method to move the mouse pointer to the specified element
+        actions = new Actions(driver);
+        actions.moveToElement(ele).perform();
+    }
+
+    public void clickElement(WebElement ele){
+        actions = new Actions(driver);
+        actions.click(ele).build().perform();
+    }
+
     /** ============================
      * Allure:
      ===============================*/
